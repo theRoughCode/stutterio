@@ -17,3 +17,27 @@ function highlightWords(speech, text, callback) {
     callback(readArr.concat(arr).join(" "));
   } else callback(null);
 }
+
+function populateWord(word, synonyms) {
+  return `<span data-length="${synonyms.length}" data-synonyms="${synonyms}">${word}</span>`;
+}
+
+/**
+ * Takes in user's text and list of potential stutters, and highlights and provides synonyms
+ */
+function optimizeScript(text, stutList, callback) {
+  if (!stutList) return callback(text);
+  else stutList = JSON.parse(stutList);
+
+  stutList.sort((a, b) => a.index - b.index);
+  text = text.split(" ");
+
+  var count = 0;
+  stutList.forEach(entry => {
+    count++;
+    text[entry.index] = populateWord(text[entry.index], entry.synonyms);
+    if (count === stutList.length) {
+      return callback(text.join(" "));
+    }
+  })
+}
