@@ -58,8 +58,23 @@ if (hasGetUserMedia()) {
   alert('getUserMedia() is not supported in your browser');
 }
 
-
-function handleClick() {
+function handleRecord() {
   if (isRecording) stopRecording();
   else startRecording();
+}
+
+function handleSubmit() {
+  const word = document.querySelector('#input-body').value;
+  console.log(word);
+
+  var request = new XMLHttpRequest();
+  request.open("POST", './firstSyllable', true);
+  request.responseType = "text";
+  request.setRequestHeader("Content-type", "application/json");
+  request.onload = function(e){
+    // send the blob somewhere else or handle it here
+    // use request.response
+    console.log("Server returned: ", e.target.responseText);
+  };
+  request.send(JSON.stringify({ word }));
 }

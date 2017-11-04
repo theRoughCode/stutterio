@@ -21,6 +21,7 @@
       function statusChangeCallback(response) {
         if (response.status === 'connected') {
           console.log('user Id: ' + response.authResponse.userID);
+          window.location = "/text";
         }
       }
 

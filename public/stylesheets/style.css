@@ -31,8 +31,14 @@ body {
 .btn-holder {
   display: flex;
   padding: 20px;
+  width: 30%;
+  margin: auto;
 }
 
 #record-btn {
+  margin: auto;
+}
+
+#submit-btn {
   margin: auto;
 }

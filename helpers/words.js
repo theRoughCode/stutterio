@@ -27,7 +27,7 @@ function firstSyllable(word, callback){
   .header("X-Mashape-Key", "uzoBeHZ3TkmshlrZiPD8eWLQQZF9p1sRnxJjsnMzgqCMQB9Xnh")
   .header("Accept", "application/json")
   .end(function (result) {
-    var parsedWord = JSON.parse(result.body);
+    var parsedWord = result.body;
     var syllables = JSON.parse(parsedWord.syllables).list;
     callback(syllables[0]);
 	});
