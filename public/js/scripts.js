@@ -100,7 +100,7 @@ function handleSubmit() {
     console.log("Server returned: ", e.target.responseText);
     swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
-  request.send(JSON.stringify({ word: script }));
+  request.send(JSON.stringify({ words: script.split(" ") }));
 
   swapTemplates(LOADING_SCREEN);
 }
