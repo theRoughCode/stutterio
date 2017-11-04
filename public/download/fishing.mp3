@@ -1,0 +1,21 @@
+<!DOCTYPE html><!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"></html><![endif]--><!--[if IE 7]><html class="no-js ie7 oldie" lang="en"></html><![endif]--><!--[if IE 8]><html class="no-js ie8 oldie" lang="en"></html><![endif]--><!--[if gte IE 8]><html class="no-js" lang="en"></html><![endif]--><head><meta charset="utf-8" /><meta content="width=device-width, initial-scale=1.0" name="viewport" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Oxford Dictionaries</title><link data-turbolinks-track="true" href="/assets/application-e31f1ccd5de156efd11816aae44738be.css" media="all" rel="stylesheet" /><link data-turbolinks-track="true" href="/assets/error_layout-8674b77925702ff58f6439f316e44fe1.css" media="all" rel="stylesheet" /><!--[if lt IE 9]
+= javascript_include_tag 'ie', 'data-turbolinks-track' => true--><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+//<![CDATA[
+window.jQuery || document.write(unescape('%3Cscript src="/javascripts/jquery.js">%3C/script>'))
+//]]>
+</script><script data-turbolinks-track="true" src="/assets/head-e71a15825b4b230c8aeb27b6bd29adb0.js"></script><script data-turbolinks-track="true" src="/assets/application-5f80af98400deb208eb18532ed333c07.js"></script><link href="/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" /><link href="/apple-touch-icon-60x60.png" rel="apple-touch-icon" sizes="60x60" /><link href="/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72" /><link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" /><link href="/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" /><link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" /><link href="/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144" /><link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" /><link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" /><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" /><link href="/favicon-194x194.png" rel="icon" sizes="194x194" type="image/png" /><link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" /><link href="/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png" /><link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" /><link href="/favicon.ico?v3" rel="shortcut icon" /><link href="/manifest.json" rel="manifest" /><link color="#5bbad5" href="/safari-pinned-tab.svg" rel="mask-icon" /><meta content="#00bdf2" name="msapplication-TileColor" /><meta content="/mstile-144x144.png" name="msapplication-TileImage" /><meta content="#006cac" name="theme-color" /><meta content="authenticity_token" name="csrf-param" />
+<meta content="+fHEFsLZh/4idI3cH5GjbjVa7phBeT0wm0gnilkxrqY=" name="csrf-token" /><link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" type="text/css" /><link href="//fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic" rel="stylesheet" type="text/css" /></head><body><header>
+<div class='headerHead' style='text-align: center'>
+<div class='branding'>
+<a class='siteLogo' href='/'>
+<img alt="Oxford Living Dictionaries" src="/assets/oup/od-logo-www-ae5f67b9b08c24fd3b86673570e11d22.svg" style="margin: 30px 0" width="320" />
+</a>
+<div class='poweredLogo'><img alt="Powered by Oxford Living Dictionaries" src="/assets/oup/powered-by-ae45a120a130ceb9150f2ae41b9b5039.svg" style="padding-bottom: 60px" width="240" /></div>
+</div>
+</div>
+<div class='searchAndBrowseBar'>
+<div class='searchAndBrowseBarInner'></div>
+</div>
+</header>
+<div class="main"><div class="error_body"><div class="container"><h1>Not found</h1><p><p> Sorry, but the page you were trying to view does not exist. </p> <p> It looks like this was the result of either: </p> <ul> <li> a mistyped address </li> <li> an out-of-date link </li> </ul></p><h2><a href="/">Homepage »</a></h2></div></div></div></body></html>
