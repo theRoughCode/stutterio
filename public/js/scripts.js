@@ -1,21 +1,56 @@
-const recordButton = document.querySelector('#record-btn');
 var isRecording = false;
 var recordRTC = null, audio = null;
 
+/**
+ * Gets cookie of key cname
+ */
+function getCookie(cname, callback) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var startIndex = decodedCookie.indexOf(cname) + name.length;
+  var endIndex = decodedCookie.indexOf(';', startIndex);
+  var cookieVal = '';
+  if (endIndex === -1) cookieVal = decodedCookie.substring(startIndex);
+  else cookieVal = decodedCookie.substring(startIndex, endIndex);
+  callback(cookieVal)
+}
+
+/**
+ * Check if user is logged in
+ */
+ function checkUserLoggedIn(callback) {
+   getCookie('user', user => {
+     if(user !== null && user.length) {
+       const welcome = document.querySelector('h1');
+       const username = JSON.parse(user).name;
+       welcome.innerHTML = `Welcome, ${username}, to Stutter.IO!`;
+       callback(true);
+     } else callback(false);
+   });
+ }
+
+/**
+ * Returns true if user has media to record audio
+ */
 function hasGetUserMedia() {
   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
 }
 
+/**
+ * Start listenting to audio input
+ */
 function startRecording() {
   recordRTC.startRecording();
-  recordButton.innerHTML = 'Stop';
   isRecording = true;
 }
 
+/**
+ * Stop recording and get mp3 file
+ */
 function stopRecording() {
   recordRTC.stopRecording(function(audioURL) {
-      var recordedBlob = this.getBlob();
+      // var recordedBlob = this.getBlob();
 
       document.querySelector('#audio').src = audioURL;
 
@@ -28,44 +63,34 @@ function stopRecording() {
         request.onload = function(e){
           // send the blob somewhere else or handle it here
           // use request.response
-          console.log("Server returned: ",e.target.responseText);
+          console.log("Server returned: ", e.target.responseText);
+          recordRTC.clearRecordedData();
         };
         request.send(JSON.stringify({ url: dataURL}));
-        recordButton.innerHTML = 'Record';
         isRecording = false;
       });
   });
 }
 
-function successCallback(audioStream) {
-  // RecordRTC usage goes here
-  recordRTC = RecordRTC(audioStream, {
-    type: 'audio',
-    recorderType: StereoAudioRecorder,
-    mimeType: 'audio/mp3'
-  });
-}
-
-var errorCallback = function(e) {
-  console.log('Reeeejected!', e);
-};
-
-if (hasGetUserMedia()) {
-  // Good to go!
-  // Not showing vendor prefixes.
-  navigator.mediaDevices.getUserMedia({video: false, audio: true}).then(successCallback).catch(errorCallback);
-} else {
-  alert('getUserMedia() is not supported in your browser');
-}
-
+/**
+ * Event listener for record button
+ */
 function handleRecord() {
-  if (isRecording) stopRecording();
-  else startRecording();
+  const recordButton = document.querySelector('#record-btn').querySelector('i');
+  recordButton.classList.toggle('fa-microphone');
+  recordButton.classList.toggle('fa-microphone-slash');
+  if (isRecording) {
+    stopRecording();
+  } else {
+    startRecording();
+  }
 }
 
+/**
+ * Event listener for subnit button
+ */
 function handleSubmit() {
   const word = document.querySelector('#input-body').value;
-  console.log(word);
 
   var request = new XMLHttpRequest();
   request.open("POST", './firstSyllable', true);
@@ -78,3 +103,30 @@ function handleSubmit() {
   };
   request.send(JSON.stringify({ word }));
 }
+
+
+checkUserLoggedIn(success => {
+  if (success) {
+    var successCallback = function(audioStream) {
+      // RecordRTC usage goes here
+      recordRTC = RecordRTC(audioStream, {
+        type: 'audio',
+        recorderType: StereoAudioRecorder,
+        mimeType: 'audio/mp3',
+        sampleRate: 44100,
+        bufferSize: 16384
+      });
+    };
+    var errorCallback = function(e) {
+      console.log('Reeeejected!', e);
+    };
+
+    if (hasGetUserMedia()) {
+      // Good to go!
+      // Not showing vendor prefixes.
+      navigator.mediaDevices.getUserMedia({video: false, audio: true}).then(successCallback).catch(errorCallback);
+    } else {
+      alert('getUserMedia() is not supported in your browser');
+    }
+  } else window.location = '/';
+});

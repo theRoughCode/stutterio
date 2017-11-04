@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <meta charset="utf-8">
     <title>Stutter.io</title>
   </head>
@@ -11,15 +12,22 @@
     </div>
     <div class="body">
       <div class="input-holder">
-        <textarea id="input-body" cols="40" rows="5" placeholder="{{ text }}"></textarea>
-        <div class="btn-holder">
-          <button id="record-btn" onclick="handleRecord()">Record</button>
-          <button id="submit-btn" onclick="handleSubmit()">Submit</button>
+        <div class="words" contenteditable>
+          {{ text }}
         </div>
-        <audio id="audio" controls autoplay></audio>
+        <!-- <textarea id="input-body" cols="40" rows="5" placeholder="{{ text }}"></textarea> -->
       </div>
+      <div class="btn-holder">
+        <button id="record-btn" onclick="handleRecord()">
+          <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+        <!-- <button id="submit-btn" onclick="handleSubmit()">Submit</button> -->
+      </div>
+      <audio id="audio" controls autoplay></audio>
     </div>
     <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
     <script src="../public/js/scripts.js"></script>
+    <script src="../public/js/highlight.js"></script>
+    <script src="../public/js/speech.js"></script>
   </body>
 </html>

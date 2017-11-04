@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/theRoughCode/stutterio#readme",
   "dependencies": {
+    "async": "^2.5.0",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",

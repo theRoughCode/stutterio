@@ -1,5 +1,5 @@
 function getDefaultText(callback) {
-  const text = "I have four cats and five dogs."
+  const text = "I have four cats and five dogs.  They were eager to go to the beachfront.  We took a cheap taxi ride there and saw a few geese along the way.  The dogs didn't know how to react, neither did any of the cats.  We checked in to the hotel as guests and paid a tour guide to show us around the city.  We caught some whitefish and went for a hitchhike afterwards.  We saw an otter and a bobcat, and walked past a jogger.  After the hike, we sat down to eat a chocolate waffle.  Little does my daughter know of this double life I lead."
 
   callback(text);
 }
