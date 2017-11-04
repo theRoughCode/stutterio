@@ -10,12 +10,17 @@ var config = {
 firebase.initializeApp(config);
 
 // helper for database functions
-function writeUserData(uid, name) {
+function writeUserData(uid, name, callback) {
   firebase.database().ref('users/' + uid).set({
     name: name,
     stutterSyllables: [],
     isTrained: false
-  });
+  }).then(function(callback){
+    callback(true);
+  },
+function(callback){
+  callback(false);
+});
 }
 
 // adds syllables to user's list of stutter syllables
