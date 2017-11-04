@@ -10,10 +10,11 @@ var config = {
 firebase.initializeApp(config);
 
 // helper for database functions
-function writeUserData(uid, name, stutterSyllables) {
+function writeUserData(uid, name) {
   firebase.database().ref('users/' + uid).set({
     name: name,
-    stutterSyllables: stutterSyllables
+    stutterSyllables: [],
+    isTrained: false
   });
 }
 
