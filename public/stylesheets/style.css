@@ -1,0 +1,28 @@
+body {
+  background: black;
+  color: #fff;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+.header {
+  display: flex;
+  height: 50%;
+}
+
+.body {
+  height: 100%;
+}
+
+.input-holder {
+  margin: auto;
+  height: 200px;
+  display: flex;
+}
+
+#input-body {
+  margin: auto;
+  height: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  display: block;
+}
