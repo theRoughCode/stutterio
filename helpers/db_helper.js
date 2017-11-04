@@ -44,5 +44,6 @@ function readUserData(userId){
 }
 
 module.exports = {
-  addStutterSyllable
+  addStutterSyllable,
+  writeUserData
 }
