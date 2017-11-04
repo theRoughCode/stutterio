@@ -30,6 +30,10 @@ routes.post('/firstSyllable', function(req, res){
   words.findStutterSyllables('amr', req.body.words);
 });
 
+routes.post('/highlightStutters', function(req, res){
+  words.listOfStutterWords(req.body.user, req.body.text, callback);
+});
+
 routes.post('/audio', function(req, res) {
   res.send(req.body);
 
