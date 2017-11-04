@@ -6,26 +6,27 @@ function getDefaultText(callback) {
 
 var unirest = require('unirest');
 var db_helper = require('./db_helper')
+var forEach = require('async-foreach').forEach;
 
 /*
- * Consumes a user id and his sample entry and finds every occurance of a stutter in his
- * sample, then adds the stutter causing syllable to the user's list of stuttering
- * syllables.
- */
+* Consumes a user id and his sample entry and finds every occurance of a stutter in his
+* sample, then adds the stutter causing syllable to the user's list of stuttering
+* syllables.
+*/
 function findStutterSyllables(uid, words){
   console.log(words);
-	for (var word in words) {
+  for (var word in words) {
     console.log("\'"+words[word]+"\'")
     firstSyllable(words[word], syllable => db_helper.addStutterSyllable(uid, syllable));
   }
 }
 
 /*
- * Consumes in a word and returns the first syllable of the word using words api
- */
+* Consumes in a word and returns the first syllable of the word using words api
+*/
 function firstSyllable(word, callback){
-	var request = "https://wordsapiv1.p.mashape.com/words/" + word + "/syllables"
-	unirest.get(request)
+  var request = "https://wordsapiv1.p.mashape.com/words/" + word + "/syllables"
+  unirest.get(request)
   .header("X-Mashape-Key", "Q1wnEQpmtsmshR24g22cIWSpULPxp1Ywj3sjsn7XbRvAAU3j0l")
   .header("Accept", "application/json")
   .end(function (result) {
@@ -36,27 +37,44 @@ function firstSyllable(word, callback){
     else{
       console.log("word not in api");
     }
-	});
+  });
+}
+
+/*
+* Consumes a word and returns an array of all its synonynms using words api
+*/
+function getSynonyms(word){
+  var request = "https://wordsapiv1.p.mashape.com/words/" + word + "/synonyms"
+  unirest.get(request)
+  .header("X-Mashape-Key", "Q1wnEQpmtsmshR24g22cIWSpULPxp1Ywj3sjsn7XbRvAAU3j0l")
+  .header("Accept", "application/json")
+  .end(function (result) {
+    if(result.body.synonyms){
+      return result.body.synonyms;
+    }
+  }
 }
 /*
- * Consumes a user id and a piece of text and returns the text after highlighting each word
- * that starts with one of the user's stuttering syllables.
- */
+* Consumes a user id and a piece of text and returns the text after highlighting each word
+* that starts with one of the user's stuttering syllables.
+*/
 function listOfStutterWords(text, user, callback){
   var stutterList = db_helper.getStutterList();
   var words = text.split(" ");
   var result = []
-  for (word in words) {
-    firstSyllable(words[word], function(Syllable){
+  forEach(["a", "b", "c"], function(item, index, arr) {
+    firstSyllable(item, function(Syllable){
       if(stutterList.indexOf(Syllable) > -1){
-        result.push(words[word]);
+        var entry = {
+          index: index,
+          word: item,
+          synonyms: getSynonyms(item)
+        }
+        result.push(entry);
       }
     });
-    callback(result);
-  }
-   // go through the text word by word
-   // if words starts with one of the user's stuttering syllables
-   // highlight word by adding tags before and after it
+  });
+  callback(result);
 }
 
 module.exports = {
