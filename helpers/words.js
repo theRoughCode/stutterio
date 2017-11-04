@@ -1,21 +1,19 @@
 function getDefaultText(callback) {
-  const text = "I have four cats and five dogs."
+  const text = "I have four cats and five dogs.  They were eager to go to the beachfront.  We took a cheap taxi ride there and saw a few geese along the way.  The dogs didn't know how to react, neither did any of the cats.  We checked in to the hotel as guests and paid a tour guide to show us around the city.  We caught some whitefish and went for a hitchhike afterwards.  We saw an otter and a bobcat, and walked past a jogger.  After the hike, we sat down to eat a chocolate waffle.  Little does my daughter know of this double life I lead."
 
   callback(text);
 }
 
 var unirest = require('unirest');
+var db_helper = require('./db_helper')
 
 /*
  * Consumes a user id and his sample entry and finds every occurance of a stutter in his
  * sample, then adds the stutter causing syllable to the user's list of stuttering
  * syllables.
  */
-function findStuttersyllables(words, user){
-	for(var word in words){
-		//find the first syllable of the word using the words api
-		//add the first syllable to the user list of syllables
-	}
+function findStutterSyllables(uid, word){
+	firstSyllable(word, syllable => db_helper.addStutterSyllable(uid, syllable));
 }
 
 /*
@@ -46,7 +44,7 @@ function listOfStutterWords(text, user){
 }
 
 module.exports = {
-  findStuttersyllables,
+  findStutterSyllables,
   firstSyllable,
   getDefaultText
 }
