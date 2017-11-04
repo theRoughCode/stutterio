@@ -21,9 +21,7 @@ function getCookie(cname, callback) {
  function checkUserLoggedIn(callback) {
    getCookie('user', user => {
      if(user !== null && user.length) {
-       const welcome = document.querySelector('h1');
-       const username = JSON.parse(user).name;
-       welcome.innerHTML = `Welcome, ${username}, to Stutter.IO!`;
+      //  const username = JSON.parse(user).name;
        callback(true);
      } else callback(false);
    });
@@ -99,14 +97,17 @@ function handleSubmit() {
     // send the blob somewhere else or handle it here
     // use request.response
     console.log("Server returned: ", e.target.responseText);
+    swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
   request.send(JSON.stringify({ word: script.split(" ", 2)[0] }));
+
+  swapTemplates(LOADING_SCREEN);
 }
 
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(LOADING_SCREEN);
+    swapTemplates(INPUT_SCRIPT_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {
