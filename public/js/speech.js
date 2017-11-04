@@ -31,6 +31,12 @@ recognition.addEventListener('result', e => {
     }
 });
 
-recognition.addEventListener('end', recognition.start);
+function startSpeechRecognition() {
+  recognition.addEventListener('end', recognition.start);
 
-recognition.start();
+  recognition.start();
+}
+
+function stopSpeechRecognition() {
+  recognition.stop();
+}

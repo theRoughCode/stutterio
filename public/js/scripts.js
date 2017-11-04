@@ -81,6 +81,7 @@ function handleRecord() {
     stopRecording();
   } else {
     startRecording();
+    startSpeechRecognition();
   }
 }
 
@@ -99,7 +100,7 @@ function handleSubmit() {
     console.log("Server returned: ", e.target.responseText);
     swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
-  request.send(JSON.stringify({ word: script.split(" ", 2)[0] }));
+  request.send(JSON.stringify({ word: script }));
 
   swapTemplates(LOADING_SCREEN);
 }
