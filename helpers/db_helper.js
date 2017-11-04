@@ -1,4 +1,6 @@
 var firebase = require('firebase');
+const asyncjs = require('async');
+
 var config = {
   apiKey: "AIzaSyC33Y85QzhPvfargKMOoJYSum1XUujo1bg",
   authDomain: "stutterio-9a716.firebaseapp.com",
@@ -13,7 +15,7 @@ firebase.initializeApp(config);
 function writeUserData(uid, name, callback) {
   firebase.database().ref('users/' + uid).set({
     name: name,
-    stutterSyllables: [],
+    stutterSyllables: ["hel", "world"],
     isTrained: false
   }).then(success => {
       callback(true);
@@ -38,12 +40,21 @@ function writeUserData(uid, name, callback) {
     });
   }
 
-  function getStutterList(uid){
+  function getStutterList(uid, callback){
     firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
-      var array = Object.keys(countries).map(function(key) {
-          return countries[key];
+      if (!snapshot.val()) return callback(null);
+      var arr = [];
+      asyncjs.forEachOf(snapshot.val(), (value, key, callback1) => {
+        arr.push(value);
+        callback1();
+      }, err => {
+        if(err) {
+          console.error(err);
+          callback(null);
+        } else {
+          callback(arr);
+        }
       });
-      return array;
     });
   }
 

@@ -110,14 +110,14 @@ function handleSubmit() {
     // send the blob somewhere else or handle it here
     // use request.response
     console.log("Server returned: ", e.target.responseText);
-    swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
+    optimizeScript(script, request.response, optimized => swapTemplates(OPTIMIZE_SCRIPT, { text: optimized }));
   };
 
   getCookie('user', user => {
     if(user !== null && user.length) {
       user = JSON.parse(user);
       request.send(JSON.stringify({
-        user: user.name,
+        user: user.id,
         text: script
       }));
     }

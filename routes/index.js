@@ -32,7 +32,7 @@ routes.post('/firstSyllable', function(req, res){
 
 routes.post('/highlightStutters', function(req, res){
   words.listOfStutterWords(req.body.user, req.body.text, result => {
-    console.log(result);
+    res.send(result);
   });
 });
 
