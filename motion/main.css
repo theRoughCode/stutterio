@@ -1,0 +1,21 @@
+.dip .pip .mcp .palm .finger_label {
+	position: absolute;
+}
+
+.dip .pip .mcp {
+	width: 30px;
+	height: 30px;
+}
+
+.finger_label {
+	font-family: arial;
+	font-size: 12px;
+	color: #0aa;
+}
+
+body {
+	background-image: url("images/leap.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment:fixed;
+}
