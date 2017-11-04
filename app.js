@@ -6,6 +6,8 @@ const path = require('path');
 const routes = require('./routes');
 
 //  Connect all our routes to our application
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true }));
 app.use('/', routes);
 
 // Turn on that server!

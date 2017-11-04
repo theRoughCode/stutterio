@@ -17,6 +17,7 @@ body {
   margin: auto;
   height: 200px;
   display: flex;
+  flex-direction: column;
 }
 
 #input-body {
@@ -25,4 +26,13 @@ body {
   padding: 10px;
   border-radius: 10px;
   display: block;
+}
+
+.btn-holder {
+  display: flex;
+  padding: 20px;
+}
+
+#record-btn {
+  margin: auto;
 }
