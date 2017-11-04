@@ -22,14 +22,17 @@ function findStuttersyllables(words, user){
  * Consumes in a word and returns the first syllable of the word using words api
  */
 function firstSyllable(word, callback){
-	var request = "https://wordsapiv1.p.mashape.com/words/" + word
+	var request = "https://wordsapiv1.p.mashape.com/words/" + word + "/syllables"
 	unirest.get(request)
-  .header("X-Mashape-Key", "uzoBeHZ3TkmshlrZiPD8eWLQQZF9p1sRnxJjsnMzgqCMQB9Xnh")
+  .header("X-Mashape-Key", "Q1wnEQpmtsmshR24g22cIWSpULPxp1Ywj3sjsn7XbRvAAU3j0l")
   .header("Accept", "application/json")
   .end(function (result) {
-    var parsedWord = result.body;
-    var syllables = JSON.parse(parsedWord.syllables).list;
-    callback(syllables[0]);
+    if(result.body.syllables && result.body.syllables.list){
+      callback(result.body.syllables.list[0]);
+    }
+    else{
+      callback("word not in api");
+    }
 	});
 }
 /*
