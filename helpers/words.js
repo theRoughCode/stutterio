@@ -42,7 +42,18 @@ function firstSyllable(word, callback){
  * Consumes a user id and a piece of text and returns the text after highlighting each word
  * that starts with one of the user's stuttering syllables.
  */
-function listOfStutterWords(text, user){
+function listOfStutterWords(text, user, callback){
+  var stutterList = db_helper.getStutterList();
+  var words = text.split(" ");
+  var result = []
+  for (word in words) {
+    firstSyllable(words[word], function(Syllable){
+      if(stutterList.indexOf(Syllable) > -1){
+        result.push(words[word]);
+      }
+    });
+    callback(result);
+  }
    // go through the text word by word
    // if words starts with one of the user's stuttering syllables
    // highlight word by adding tags before and after it
@@ -50,6 +61,6 @@ function listOfStutterWords(text, user){
 
 module.exports = {
   findStutterSyllables,
-  firstSyllable,
+  listOfStutterWords,
   getDefaultText
 }
