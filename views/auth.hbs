@@ -19,7 +19,9 @@
       };
 
       function statusChangeCallback(response) {
-        console.log(response);
+        if (response.status === 'connected') {
+          console.log('user Id: ' + response.authResponse.userID);
+        }
       }
 
       function checkLoginState() {
@@ -40,19 +42,10 @@
       <h1>Welcome to Stutter.IO</h1>
     </div>
     <div class="body">
-      <div class="input-holder">
-        <textarea id="input-body" cols="40" rows="5" placeholder="{{ text }}"></textarea>
-        <div class="btn-holder">
-          <button id="record-btn" onclick="handleClick()">Record</button>
-          <audio id="audio" controls autoplay></audio>
-        </div>
-        <fb:login-button
-          scope="public_profile,email"
-          onlogin="checkLoginState()">
-        </fb:login-button>
-      </div>
+      <fb:login-button
+        scope="public_profile,email"
+        onlogin="checkLoginState()">
+      </fb:login-button>
     </div>
-    <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
-    <script src="../public/js/scripts.js"></script>
   </body>
 </html>
