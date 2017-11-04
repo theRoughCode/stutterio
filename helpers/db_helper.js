@@ -40,7 +40,9 @@ function writeUserData(uid, name, callback) {
 
   function getStutterList(uid){
     firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
-      var array = Object.values(snapshot.val());
+      var array = Object.keys(countries).map(function(key) {
+          return countries[key];
+      });
       return array;
     });
   }

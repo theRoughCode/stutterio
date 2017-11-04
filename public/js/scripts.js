@@ -103,7 +103,7 @@ function handleRecord() {
 function handleSubmit() {
   const script = document.querySelector('.input-body').value;
   var request = new XMLHttpRequest();
-  request.open("POST", './firstSyllable', true);
+  request.open("POST", './highlightStutters', true);
   request.responseType = "text";
   request.setRequestHeader("Content-type", "application/json");
   request.onload = function(e){
@@ -112,7 +112,16 @@ function handleSubmit() {
     console.log("Server returned: ", e.target.responseText);
     swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
-  request.send(JSON.stringify({ word: script }));
+
+  getCookie('user', user => {
+    if(user !== null && user.length) {
+      user = JSON.parse(user);
+      request.send(JSON.stringify({
+        user: user.name,
+        text: script
+      }));
+    }
+  });
 
   swapTemplates(LOADING_SCREEN);
 }
@@ -120,7 +129,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INTRO_SCREEN_TEMPLATE);
+    swapTemplates(INPUT_SCRIPT_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {
