@@ -12,8 +12,12 @@ var db_helper = require('./db_helper')
  * sample, then adds the stutter causing syllable to the user's list of stuttering
  * syllables.
  */
-function findStutterSyllables(uid, word){
-	firstSyllable(word, syllable => db_helper.addStutterSyllable(uid, syllable));
+function findStutterSyllables(uid, words){
+  console.log(words);
+	for (var word in words) {
+    console.log("\'"+words[word]+"\'")
+    firstSyllable(words[word], syllable => db_helper.addStutterSyllable(uid, syllable));
+  }
 }
 
 /*
@@ -26,10 +30,11 @@ function firstSyllable(word, callback){
   .header("Accept", "application/json")
   .end(function (result) {
     if(result.body.syllables && result.body.syllables.list){
+      console.log(result.body.syllables.list[0]);
       callback(result.body.syllables.list[0]);
     }
     else{
-      callback("word not in api");
+      console.log("word not in api");
     }
 	});
 }
