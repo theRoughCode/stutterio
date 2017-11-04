@@ -5,17 +5,15 @@ function getDefaultText(callback) {
 }
 
 var unirest = require('unirest');
+var db_helper = require('./db_helper')
 
 /*
  * Consumes a user id and his sample entry and finds every occurance of a stutter in his
  * sample, then adds the stutter causing syllable to the user's list of stuttering
  * syllables.
  */
-function findStuttersyllables(words, user){
-	for(var word in words){
-		//find the first syllable of the word using the words api
-		//add the first syllable to the user list of syllables
-	}
+function findStutterSyllables(uid, word){
+	firstSyllable(word, syllable => db_helper.addStutterSyllable(uid, syllable));
 }
 
 /*
@@ -46,7 +44,7 @@ function listOfStutterWords(text, user){
 }
 
 module.exports = {
-  findStuttersyllables,
+  findStutterSyllables,
   firstSyllable,
   getDefaultText
 }
