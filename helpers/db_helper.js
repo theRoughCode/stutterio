@@ -28,7 +28,7 @@ function addStutterSyllable(uid, syllable) {
   firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
     var array = Object.values(snapshot.val());
     // console.log(array);
-    if(array.indexOf(syllable) == -1){
+    if(array.indexOf(syllable) === -1){
       array.push(syllable);
     }
     // console.log(syllable);

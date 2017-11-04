@@ -11,7 +11,6 @@ window.fbAsyncInit = function() {
 
 function statusChangeCallback(response) {
   if (response.status === 'connected') {
-
     FB.api('/me', function(response1) {
       const userInfo = JSON.stringify({
         id: response1.id,
@@ -19,6 +18,7 @@ function statusChangeCallback(response) {
       });
       document.cookie = `user=${userInfo};  path=/`;
       window.location = "/text";
+
     });
 
   }
