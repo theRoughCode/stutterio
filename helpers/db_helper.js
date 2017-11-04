@@ -15,11 +15,9 @@ function writeUserData(uid, name, callback) {
     name: name,
     stutterSyllables: [],
     isTrained: false
-  }).then(
-    function(callback){
+  }).then(success => {
       callback(true);
-    },
-    function(callback){
+    }, error => {
       callback(false);
     });
   }

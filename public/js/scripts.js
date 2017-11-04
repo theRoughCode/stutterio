@@ -21,7 +21,19 @@ function getCookie(cname, callback) {
  function checkUserLoggedIn(callback) {
    getCookie('user', user => {
      if(user !== null && user.length) {
-      //  const username = JSON.parse(user).name;
+       user = JSON.parse(user);
+
+      var request = new XMLHttpRequest();
+      request.open("POST", './createUser', true);
+      request.responseType = "text";
+      request.setRequestHeader("Content-type", "application/json");
+      request.onload = function(e){
+        console.log("Server returned: ", e.target.responseText);
+      };
+      request.send(JSON.stringify({
+        id: user.id,
+        name: user.name
+      }));
        callback(true);
      } else callback(false);
    });
@@ -100,7 +112,7 @@ function handleSubmit() {
     console.log("Server returned: ", e.target.responseText);
     swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
-  request.send(JSON.stringify({ words: script.split(" ") }));
+  request.send(JSON.stringify({ word: script }));
 
   swapTemplates(LOADING_SCREEN);
 }
@@ -108,7 +120,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INPUT_SCRIPT_TEMPLATE);
+    swapTemplates(INTRO_SCREEN_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

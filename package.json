@@ -25,6 +25,7 @@
     "firebase": "^4.6.1",
     "firebase-admin": "^5.4.3",
     "hbs": "^4.0.1",
+    "leapjs": "^0.6.4",
     "save-file": "^1.2.0",
     "unirest": "^0.5.1"
   }
