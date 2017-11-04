@@ -20,8 +20,16 @@
 
       function statusChangeCallback(response) {
         if (response.status === 'connected') {
-          console.log('user Id: ' + response.authResponse.userID);
-          window.location = "/text";
+
+          FB.api('/me', function(response1) {
+            const userInfo = JSON.stringify({
+              id: response1.id,
+              name: response1.name
+            });
+            document.cookie = `user=${userInfo};  path=/`;
+            window.location = "/text";
+          });
+
         }
       }
 
@@ -43,10 +51,7 @@
       <h1>Welcome to Stutter.IO</h1>
     </div>
     <div class="body">
-      <fb:login-button
-        scope="public_profile,email"
-        onlogin="checkLoginState()">
-      </fb:login-button>
+      <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" onlogin="checkLoginState()" data-auto-logout-link="false" data-use-continue-as="false"></div>
     </div>
   </body>
 </html>
