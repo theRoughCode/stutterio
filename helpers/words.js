@@ -21,7 +21,7 @@ function findStuttersyllables(words, user){
 /*
  * Consumes in a word and returns the first syllable of the word using words api
  */
-function firstsyllable(word){
+function firstSyllable(word, callback){
 	var request = "https://wordsapiv1.p.mashape.com/words/" + word
 	unirest.get(request)
   .header("X-Mashape-Key", "uzoBeHZ3TkmshlrZiPD8eWLQQZF9p1sRnxJjsnMzgqCMQB9Xnh")
@@ -29,7 +29,7 @@ function firstsyllable(word){
   .end(function (result) {
     var parsedWord = JSON.parse(result.body);
     var syllables = JSON.parse(parsedWord.syllables).list;
-    return syllables[0];
+    callback(syllables[0]);
 	});
 }
 /*
@@ -41,7 +41,9 @@ function listOfStutterWords(text, user){
    // if words starts with one of the user's stuttering syllables
    // highlight word by adding tags before and after it
 }
+
 module.exports = {
-  findStuttersyllables
+  findStuttersyllables,
+  firstSyllable,
   getDefaultText
 }

@@ -7,6 +7,10 @@ routes.get('/', function(req, res){
   words.getDefaultText(text => res.render('index', { text }));
 });
 
+routes.post('/firstSyllable', function(req, res){
+  words.firstSyllable(req.body.word, syllable => res.send(syllable));
+});
+
 routes.post('/audio', function(req, res) {
   res.send(req.body);
 
