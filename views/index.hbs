@@ -12,7 +12,13 @@
     <div class="body">
       <div class="input-holder">
         <textarea id="input-body" cols="40" rows="5" placeholder="{{ text }}"></textarea>
+        <div class="btn-holder">
+          <button id="record-btn" onclick="handleClick()">Record</button>
+          <audio id="audio" controls autoplay></audio>
+        </div>
       </div>
     </div>
+    <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
+    <script src="../public/js/scripts.js"></script>
   </body>
 </html>
