@@ -32,6 +32,27 @@
     createHands(); //Setup the DOM elements to draw our hands. Nothing Leap specific here.
   }
 
+  var controller = Leap.loop({enableGestures: true}, function(frame){
+  if(frame.valid && frame.gestures.length > 0){
+    frame.gestures.forEach(function(gesture){
+        switch (gesture.type){
+          case "circle":
+              console.log("Circle Gesture");
+              break;
+          case "keyTap":
+              console.log("Key Tap Gesture");
+              break;
+          case "screenTap":
+              console.log("Screen Tap Gesture");
+              break;
+          case "swipe":
+              console.log("Swipe Gesture");
+              break;
+        }
+    });
+  }
+});
+
   /*
    * This is the meat of our exmaple. Get the LeapMotion frame data and move the relevant DOM items.
    */
