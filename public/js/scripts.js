@@ -21,7 +21,19 @@ function getCookie(cname, callback) {
  function checkUserLoggedIn(callback) {
    getCookie('user', user => {
      if(user !== null && user.length) {
-      //  const username = JSON.parse(user).name;
+       user = JSON.parse(user);
+
+      var request = new XMLHttpRequest();
+      request.open("POST", './createUser', true);
+      request.responseType = "text";
+      request.setRequestHeader("Content-type", "application/json");
+      request.onload = function(e){
+        console.log("Server returned: ", e.target.responseText);
+      };
+      request.send(JSON.stringify({
+        id: user.id,
+        name: user.name
+      }));
        callback(true);
      } else callback(false);
    });

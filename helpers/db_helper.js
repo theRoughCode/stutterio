@@ -15,12 +15,12 @@ function writeUserData(uid, name, callback) {
     name: name,
     stutterSyllables: [],
     isTrained: false
-  }).then(function(callback){
+  }).then(function(success) {
     callback(true);
   },
-function(callback){
-  callback(false);
-});
+  function(error){
+    callback(false);
+  });
 }
 
 // adds syllables to user's list of stutter syllables

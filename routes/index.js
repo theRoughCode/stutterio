@@ -17,7 +17,13 @@ routes.get('/3', function(req, res) {
 });
 
 routes.post('/createUser', function(req,res) {
-  db.writeUserData(req.body.id, req.body.name)
+  db.writeUserData(req.body.id, req.body.name, success => {
+    if (success) res.send();
+    else {
+      res.status(500);
+      res.send('ERROR: Could not create user profile.');
+    }
+  })
 });
 
 routes.post('/firstSyllable', function(req, res){
