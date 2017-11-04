@@ -1,5 +1,4 @@
 (function(){
-  var _this = this;
   const MAX_HANDS = 2; //More than 1 hand drops DOM performance
   const FINGER_COUNT = 5;
   const LEAP_MIN = { 'x':-15.0, 'y':15.0, 'z':-20.0 };
