@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const fs = require('fs');
 const words = require('../helpers/words');
+const db_helper = require('../helpers/db_helper');
 const save = require('save-file');
 
 routes.get('/', function(req, res){
@@ -16,7 +17,7 @@ routes.get('/3', function(req, res) {
 })
 
 routes.post('/firstSyllable', function(req, res){
-  words.firstSyllable(req.body.word, syllable => res.send(syllable));
+  words.findStutterSyllables('amr', req.body.word);
 });
 
 routes.post('/audio', function(req, res) {
