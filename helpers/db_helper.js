@@ -42,7 +42,7 @@ function writeUserData(uid, name, callback) {
     firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
       var array = Object.values(snapshot.val());
       return array;
-    }
+    });
   }
 
   function readUserData(userId){

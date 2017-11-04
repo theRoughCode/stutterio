@@ -52,7 +52,7 @@ function getSynonyms(word){
     if(result.body.synonyms){
       return result.body.synonyms;
     }
-  }
+  });
 }
 /*
 * Consumes a user id and a piece of text and returns the text after highlighting each word
