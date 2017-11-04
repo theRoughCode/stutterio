@@ -1,14 +1,53 @@
 <!-- Configuration Data -->
-<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC33Y85QzhPvfargKMOoJYSum1XUujo1bg",
-    authDomain: "stutterio-9a716.firebaseapp.com",
-    databaseURL: "https://stutterio-9a716.firebaseio.com",
-    projectId: "stutterio-9a716",
-    storageBucket: "",
-    messagingSenderId: "628025936739"
-  };
-  firebase.initializeApp(config);
-</script>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Firebase quickstart</title>
+</head>
+<body>
+  <h1 id="bigOne"> </h1>
+
+  <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyC33Y85QzhPvfargKMOoJYSum1XUujo1bg",
+      authDomain: "stutterio-9a716.firebaseapp.com",
+      databaseURL: "https://stutterio-9a716.firebaseio.com",
+      projectId: "stutterio-9a716",
+      storageBucket: "",
+      messagingSenderId: "628025936739"
+    };
+    firebase.initializeApp(config);
+
+    var bigOne = document.getElementById('bigOne');
+    var dbref = firebase.database().ref().child('text');
+    dbref.on('value', snap => bigOne.innerText = snap.val());
+
+    var playersRef = firebase.database().ref("players/");
+
+  playersRef.set ({
+     John: {
+        number: 1,
+        age: 30
+     },
+
+     Amanda: {
+        number: 2,
+        age: 20
+     }
+  });
+
+  var ref = firebase.database().ref();
+
+ref.on("value", function(snapshot) {
+   console.log(snapshot.val());
+}, function (error) {
+   console.log("Error: " + error.code);
+});
+
+  </script>
+
+</body>
