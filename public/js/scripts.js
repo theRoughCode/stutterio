@@ -100,13 +100,13 @@ function handleSubmit() {
     // use request.response
     console.log("Server returned: ", e.target.responseText);
   };
-  request.send(JSON.stringify({ word: script.split(" ", 2)[0] }));
+  request.send(JSON.stringify({ words: script.split(" ") }));
 }
 
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(LOADING_SCREEN);
+    swapTemplates(INPUT_SCRIPT_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

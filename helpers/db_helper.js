@@ -21,12 +21,12 @@ function writeUserData(uid, name, stutterSyllables) {
 function addStutterSyllable(uid, syllable) {
   firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
     var array = Object.values(snapshot.val());
-    console.log(array);
+    // console.log(array);
     if(array.indexOf(syllable) == -1){
       array.push(syllable);
     }
-    console.log(syllable);
-    console.log(array);
+    // console.log(syllable);
+    // console.log(array);
     firebase.database().ref('/users/'+uid).set({
       stutterSyllables: array
     });

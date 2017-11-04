@@ -17,7 +17,7 @@ routes.get('/3', function(req, res) {
 });
 
 routes.post('/firstSyllable', function(req, res){
-  words.findStutterSyllables('amr', req.body.word);
+  words.findStutterSyllables('amr', req.body.words);
 });
 
 routes.post('/audio', function(req, res) {
