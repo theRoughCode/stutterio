@@ -100,7 +100,7 @@ function handleSubmit() {
     console.log("Server returned: ", e.target.responseText);
     swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
-  request.send(JSON.stringify({ words: script.split(" ") }));
+  request.send(JSON.stringify({ word: script }));
 
   swapTemplates(LOADING_SCREEN);
 }
@@ -108,7 +108,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INPUT_SCRIPT_TEMPLATE);
+    swapTemplates(INTRO_SCREEN_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

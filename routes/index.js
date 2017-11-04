@@ -1,7 +1,7 @@
 const routes = require('express').Router();
 const fs = require('fs');
 const words = require('../helpers/words');
-const db_helper = require('../helpers/db_helper');
+const db = require('../helpers/db_helper');
 const save = require('save-file');
 
 routes.get('/', function(req, res){
@@ -14,6 +14,10 @@ routes.get('/text', function(req, res) {
 
 routes.get('/3', function(req, res) {
   res.render('three');
+});
+
+routes.post('/createUser', function(req,res) {
+  db.writeUserData(req.body.id, req.body.name)
 });
 
 routes.post('/firstSyllable', function(req, res){
