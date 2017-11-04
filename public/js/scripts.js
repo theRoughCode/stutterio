@@ -90,8 +90,7 @@ function handleRecord() {
  * Event listener for subnit button
  */
 function handleSubmit() {
-  const word = document.querySelector('#input-body').value;
-
+  const script = document.querySelector('.input-body').value;
   var request = new XMLHttpRequest();
   request.open("POST", './firstSyllable', true);
   request.responseType = "text";
@@ -101,12 +100,13 @@ function handleSubmit() {
     // use request.response
     console.log("Server returned: ", e.target.responseText);
   };
-  request.send(JSON.stringify({ word }));
+  request.send(JSON.stringify({ word: script.split(" ", 2)[0] }));
 }
 
 
 checkUserLoggedIn(success => {
   if (success) {
+    swapTemplates(LOADING_SCREEN);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

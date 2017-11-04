@@ -9,11 +9,11 @@ routes.get('/', function(req, res){
 
 routes.get('/text', function(req, res) {
   words.getDefaultText(text => res.render('index', { text }));
-})
+});
 
 routes.get('/3', function(req, res) {
   res.render('three');
-})
+});
 
 routes.post('/firstSyllable', function(req, res){
   words.firstSyllable(req.body.word, syllable => res.send(syllable));

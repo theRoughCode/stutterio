@@ -11,11 +11,15 @@
       <h1>Welcome to Stutter.IO</h1>
     </div>
     <div class="body">
+      <!-- Templates -->
+    </div>
+
+    <!-- Main Title Screen that appears when the page loads for the first time -->
+    <script id="intro-screen-template" type="text/template">
       <div class="input-holder">
         <div class="words" contenteditable>
           {{ text }}
         </div>
-        <!-- <textarea id="input-body" cols="40" rows="5" placeholder="{{ text }}"></textarea> -->
       </div>
       <div class="btn-holder">
         <button id="record-btn" onclick="handleRecord()">
@@ -24,8 +28,30 @@
         <!-- <button id="submit-btn" onclick="handleSubmit()">Submit</button> -->
       </div>
       <audio id="audio" controls autoplay></audio>
-    </div>
+    </script>
+
+    <!-- Secondary Screen for user to input prepared speech to optimize -->
+    <script id="input-script-template" type="text/template">
+      <div class="input-holder">
+        <textarea class="input-body" cols="40" rows="5" placeholder="insert script here..."></textarea>
+      </div>
+      <div class="btn-holder">
+        <button id="submit-btn" onclick="handleSubmit()">
+          <i class="fa fa-upload" aria-hidden="true"></i>
+        </button>
+      </div>
+    </script>
+
+    <!-- Loading Screen -->
+    <script id="loading-screen" type="text/template">
+      <div class="loader-holder">
+        <div class="loader"></div>
+      </div>
+    </script>
+
+    <!-- JavaScripts -->
     <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
+    <script src="../public/js/template.js"></script>
     <script src="../public/js/scripts.js"></script>
     <script src="../public/js/highlight.js"></script>
     <script src="../public/js/speech.js"></script>
