@@ -21,9 +21,7 @@ function getCookie(cname, callback) {
  function checkUserLoggedIn(callback) {
    getCookie('user', user => {
      if(user !== null && user.length) {
-       const welcome = document.querySelector('h1');
-       const username = JSON.parse(user).name;
-       welcome.innerHTML = `Welcome, ${username}, to Stutter.IO!`;
+      //  const username = JSON.parse(user).name;
        callback(true);
      } else callback(false);
    });
@@ -99,8 +97,11 @@ function handleSubmit() {
     // send the blob somewhere else or handle it here
     // use request.response
     console.log("Server returned: ", e.target.responseText);
+    swapTemplates(OPTIMIZE_SCRIPT, { text: request.response });
   };
   request.send(JSON.stringify({ words: script.split(" ") }));
+
+  swapTemplates(LOADING_SCREEN);
 }
 
 
