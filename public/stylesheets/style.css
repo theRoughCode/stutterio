@@ -42,3 +42,18 @@ body {
 #submit-btn {
   margin: auto;
 }
+
+.dip .pip .mcp .palm .finger_label {
+	position: absolute !important;
+}
+
+.dip .pip .mcp {
+	width: 30px !important;
+	height: 30px !important;
+}
+
+.finger_label {
+	font-family: arial !important;
+	font-size: 12px !important;
+	color: #0aa !important;
+}
