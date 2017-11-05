@@ -13,6 +13,11 @@ function performHighlighting(speech) {
     if (res) {
       text.innerHTML = res;
       updateStutList(spanPos);
+      // If end of text
+      if (res.indexOf('</span>') + '</span>'.length >= res.length) {
+        swapTemplates(LOADING_SCREEN);
+        setTimeout(() => swapTemplates(INPUT_SCRIPT_TEMPLATE), 3000);
+      }
     }
   });
 }

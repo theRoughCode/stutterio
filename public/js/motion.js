@@ -54,7 +54,6 @@
             }
           console.log(swipeDirection);
           console.log("Swipe Gesture");
-                break;
         }
     });
   }

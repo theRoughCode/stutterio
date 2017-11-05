@@ -18,7 +18,6 @@ function statusChangeCallback(response) {
       });
       document.cookie = `user=${userInfo};  path=/`;
       window.location = "/text";
-
     });
 
   }
@@ -37,3 +36,18 @@ function checkLoginState() {
    js.src = "https://connect.facebook.net/en_US/sdk.js";
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
+
+
+function logout() {
+  //check if logout is
+  FB.getLoginStatus(function(ret) {
+      /// are they currently logged into Facebook?
+      if(ret.authResponse) {
+          //they were authed so do the logout
+          FB.logout(function(response) {
+             console.log(response);
+             window.location = '/';
+          });
+      }
+  });
+}

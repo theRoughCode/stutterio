@@ -121,10 +121,12 @@ function handleSubmit() {
     //   stutterList: request.response
     // });
     optimizeScript(script, request.response, optimized =>
-      swapTemplates(OPTIMIZED_TEMPLATE, {
-        text: optimized,
-        stutterList: request.response
-      }));
+      setTimeout(() => {
+        swapTemplates(OPTIMIZED_TEMPLATE, {
+          text: optimized,
+          stutterList: request.response
+        });
+      }, 1000));
   };
 
   getCookie('user', user => {

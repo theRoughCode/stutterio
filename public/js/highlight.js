@@ -39,6 +39,7 @@ function highlightWords(speech, text, callback) {
 
 function updateStutList(spanPos) {
   const stutDom = document.querySelector('.stutter');
+  if(!stutDom) return;
   const stutList = JSON.parse(stutDom.innerHTML);
   stutDom.innerHTML = JSON.stringify(stutList.filter(obj => obj.index > spanPos));
 }

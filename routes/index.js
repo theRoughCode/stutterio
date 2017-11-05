@@ -31,8 +31,6 @@ routes.post('/firstSyllable', function(req, res){
 });
 
 routes.post('/uploadMp3', function(req, res){
-  console.log('asdsadsadasdas');
-  console.log(req.body);
   db.storeMp3(req.body.uid, req.body.blob, success => {
     if(success) res.send();
     else {
