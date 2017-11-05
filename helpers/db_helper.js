@@ -12,7 +12,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const default = ["hel", "world", "air", "an", "ex", "ea"];
+const arr = ["hel", "world", "air", "an", "ex", "ea"];
 
 // helper for database functions
 function writeUserData(uid, name, callback) {
@@ -29,8 +29,8 @@ function writeUserData(uid, name, callback) {
 
   // adds syllables to user's list of stutter syllables
   function addStutterSyllable(uid, syllables) {
-    if (!syllables && !syllables.length) syllables = default;
-    
+    if (!syllables && !syllables.length) syllables = arr;
+
     firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
       var array = Object.values(snapshot.val());
       // console.log(array);

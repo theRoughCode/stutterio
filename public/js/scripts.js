@@ -59,7 +59,7 @@ function startRecording() {
  * Stop recording and get mp3 file
  */
 function stopRecording(uid) {
-  TRAINING_TEXT = "I have four cats and five dogs.  They were eager to go to the beachfront."
+  const TRAINING_TEXT = "I have four cats and five dogs.  They were eager to go to the beachfront. I earnestly saw eight eager eagles.  I ate a chocolate waffle";
   recordRTC.stopRecording(function(audioURL) {
       var recordedBlob = this.getBlob();
 
