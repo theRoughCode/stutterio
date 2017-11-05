@@ -25,5 +25,7 @@ function swapTemplates(template, params = null) {
       var key = e.which || e.keyCode;
       if (e.ctrlKey && key === 13) handleSubmit();
     });
+  } else if (template === LOADING_SCREEN) {
+    document.querySelector('#loading-text').innerHTML = params.text;
   }
 }

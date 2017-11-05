@@ -15,7 +15,7 @@ function performHighlighting(speech) {
       updateStutList(spanPos);
       // If end of text
       if (res.indexOf('</span>') + '</span>'.length >= res.length) {
-        swapTemplates(LOADING_SCREEN);
+        swapTemplates(LOADING_SCREEN, { text: 'Personalizing info...' });
         setTimeout(() => swapTemplates(INPUT_SCRIPT_TEMPLATE), 3000);
       }
     }

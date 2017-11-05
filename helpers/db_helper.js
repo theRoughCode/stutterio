@@ -74,9 +74,8 @@ function storeMp3(uid, callback){
   // var mp3Ref = storageRef.child(`${uid}.mp3`);
 
   fs.readFile(`./routes/${uid}.mp3`, function(err,data){
-
     if (!err) {
-        console.log('received data: ' + data);
+        console.log('received data');
         var base64File = new Buffer(data, 'binary').toString('base64');
         firebase.database().ref('users/' + uid).child('mp3').set(base64File).then(function(snapshot){
           if(snapshot) callback(true);

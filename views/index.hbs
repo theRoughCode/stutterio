@@ -9,6 +9,10 @@
   </head>
   <body>
     <div class="header">
+      <div class="menu">
+        <a onclick="swapTemplates(INTRO_SCREEN_TEMPLATE)">Retrain</a>
+        <a onclick="swapTemplates(INPUT_SCRIPT_TEMPLATE)">Optimize</a>
+      </div>
       <h1>Stutter.io</h1>
       <div class="account">
         <a class="logout" onclick="logout()">Logout</a>
@@ -62,7 +66,7 @@
     <script id="loading-screen" type="text/template">
       <div class="loader-holder">
         <div class="loading-text">
-          <h3 id="loading-text">Personalizing info...</h3>
+          <h3 id="loading-text"></h3>
         </div>
         <div class="loader"></div>
       </div>
@@ -70,6 +74,12 @@
 
     <!-- Main Title Screen that appears when the page loads for the first time -->
     <script id="optimized-template" type="text/template">
+      <div class="description">
+        <div class="description-content">
+          <h3>Your script has been optimized!</h3>
+          We've highlighted some words we think you might have trouble on.  Below you will see a carousel of possible synonyms you can use to substitute for the next highlighted word.  If you have a Leap Motion<sup>TM</sup> device, swipe left or right to scroll through the available synonyms.
+        </div>
+      </div>
       <div class="input-holder">
         <div class="words" contenteditable>
           {{{ text }}}
