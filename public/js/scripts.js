@@ -62,38 +62,6 @@ function stopRecording(uid) {
   recordRTC.stopRecording(function(audioURL) {
       var recordedBlob = this.getBlob();
 
-      // var arrayBuffer;
-      // var fileReader = new FileReader();
-      // fileReader.onload = function() {
-      //     arrayBuffer = this.result;
-      //     console.log(arrayBuffer);
-      //     console.log(arrayBuffer.byteLength);
-      //
-      //     fileReader.readAsArrayBuffer(recordedBlob);
-      //
-      //     // socket.emit('mp3Ready', { mp3: 'data' });
-      //     ss(socket).emit('mp3Ready', stream, {name: 'test.mp3'});
-      //     ss.createBlobReadStream(arrayBuffer).pipe(stream);
-      //
-      //     // upload a file to the server.
-      //
-      //     // var blobStream = ss.createBlobReadStream(arrayBuffer);
-      //     // var size = 0;
-      //     //
-      //     // blobStream.on('data', function(chunk) {
-      //     //   size += chunk.length;
-      //     //   console.log(Math.floor(size / file.size * 100) + '%');
-      //     //   // -> e.g. '42%'
-      //     // });
-      //     //
-      //     // blobStream.pipe(stream);
-      // };
-      //
-      // fileReader.readAsArrayBuffer(recordedBlob);
-
-
-
-      // document.querySelector('#audio').src = audioURL;
       recordRTC.getDataURL(function(dataURL) {
         // create a new request and send it via the objectUrl
         var request = new XMLHttpRequest();
@@ -104,6 +72,17 @@ function stopRecording(uid) {
           // send the blob somewhere else or handle it here
           // use request.response
           // console.log("Server returned: ", e.target.responseText);
+
+          var request = new XMLHttpRequest();
+          request.open("POST", `http://localhost:5000/iterationComplete/${uid}`, true);
+          request.responseType = "text";
+          request.setRequestHeader("Content-type", "application/json");
+          request.onload = function(e){
+            console.log("Pinged Python server.");
+          };
+          request.send(JSON.stringify({
+            transcript: TRAINING_TEXT
+          }));
 
           recordRTC.clearRecordedData();
         };
@@ -121,9 +100,13 @@ function stopRecording(uid) {
  * Event listener for record button
  */
 function handleRecord() {
-  const recordButton = document.querySelector('#record-btn').querySelector('i');
-  recordButton.classList.toggle('fa-microphone');
-  recordButton.classList.toggle('fa-microphone-slash');
+  const recordButton = document.querySelector('#record-btn');
+  // recordButton.classList.toggle('fa-microphone');
+  // recordButton.classList.toggle('fa-microphone-slash');
+  recordButton.classList.add('hidden');
+
+  const progressBar = document.querySelector('.w3-light-grey');
+  if(progressBar) progressBar.classList.remove('hidden');
   if (isRecording) {
     getCookie('user', user => {
       if(user !== null && user.length) {
@@ -141,7 +124,8 @@ function handleRecord() {
  * Event listener for submit button
  */
 function handleSubmit() {
-  const script = document.querySelector('.input-body').value;
+  var script = document.querySelector('.input-body');
+  if(script) script = script.value;
   var request = new XMLHttpRequest();
   request.open("POST", './highlightStutters', true);
   request.responseType = "text";
@@ -159,6 +143,7 @@ function handleSubmit() {
           text: optimized,
           stutterList: request.response
         });
+        updateCarousel();
       }, 1000));
   };
 
@@ -172,7 +157,7 @@ function handleSubmit() {
     }
   });
 
-  swapTemplates(LOADING_SCREEN);
+  swapTemplates(LOADING_SCREEN, { text: 'Optimizing speech...' });
 }
 
 

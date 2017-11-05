@@ -33,8 +33,8 @@ function highlightWords(speech, text, callback) {
     var newlyRead = arr.splice(0, foundIndex + 1);
     readArr.splice(-1, 0, ...newlyRead);
     readArr = readArr.concat(arr);
-    callback(readArr.join(" "), readArr.indexOf(CLOSE_SPAN));
-  } else callback(null, null);
+    callback(readArr.join(" "), readArr.indexOf(CLOSE_SPAN), readArr.length);
+  } else callback(null, null, null);
 }
 
 function updateStutList(spanPos) {
@@ -73,3 +73,25 @@ function optimizeScript(text, stutList, callback) {
     }
   })
 }
+
+function updateCarousel() {
+   const wordsArr = JSON.parse(document.querySelector('.stutter').innerHTML);
+   const words = wordsArr.sort((a, b) => a.index - b.index)[0].synonyms;
+   var len = words.length;
+   var index = 0;
+     $(document).ready(function(){
+       for(var i=0 ; i< len ; i++) {
+         $('<div class="item"><div class="carousel-caption" id="carousel'+i+'"></div>   </div>').appendTo('.carousel-inner');
+         $('<li data-target="#myCarousel" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+      }
+      $('.item').first().addClass('active');
+      $('.carousel-indicators > li').first().addClass('active');
+      $(".carousel-caption").each(function(i) {
+          $(this).text(words[index]);
+           ++index;
+       });
+       index = 0;
+
+       $('#myCarousel').carousel();
+     } );
+ }
