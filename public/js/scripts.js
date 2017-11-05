@@ -124,7 +124,8 @@ function handleRecord() {
  * Event listener for submit button
  */
 function handleSubmit() {
-  const script = document.querySelector('.input-body').value;
+  var script = document.querySelector('.input-body');
+  if(script) script = script.value;
   var request = new XMLHttpRequest();
   request.open("POST", './highlightStutters', true);
   request.responseType = "text";
@@ -142,6 +143,7 @@ function handleSubmit() {
           text: optimized,
           stutterList: request.response
         });
+        updateCarousel();
       }, 1000));
   };
 

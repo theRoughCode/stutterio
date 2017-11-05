@@ -181,6 +181,7 @@ h2 {
 }
 
 #record-btn, #submit-btn {
+  color: black;
   margin: auto;
   background: white;
   font-size: 45px;
@@ -247,3 +248,26 @@ h2 {
 .hidden {
   display: none;
 }
+
+.threshold .carousel-control {
+   border: 1px solid red;
+   margin: auto;
+   height: auto;
+ }
+
+ .carousel{
+       background: #ff8000;
+       margin-top: 20px;
+   }
+   .carousel .item{
+       min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+   }
+   .carousel .item img{
+       margin: 0 auto; /* Align slide image horizontally center */
+   }
+   .carousel-caption{
+     color: black;
+   }
+   .bs-example{
+     margin: 20px;
+   }
