@@ -7,7 +7,7 @@ function performHighlighting(speech) {
   const text = document.querySelector('.words');
   if (!text) return;
 
-  const stutterWord = text.querySelector('.stutter');
+  // const stutterWord = text.querySelector('.stutter');
 
   highlightWords(speech, text.innerHTML, res => {
     if (res) text.innerHTML = res;

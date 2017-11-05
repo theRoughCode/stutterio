@@ -1,4 +1,25 @@
+// function splitText(text, callback) {
+//   var arr = text.trim().split(' ');
+//   var counter = 0;
+//   for (var i = arr.length - 1; i >= 0; i--) {
+//     if ((arr[i].includes('<') || arr[i].includes('='))) {
+//       if (i < arr.length - 1) arr[i + 1] = arr[i].concat(arr[i+1]);
+//       else arr[i - 1] = arr[i - 1].concat(arr[i]);
+//       arr.splice(i, 1);
+//     } else if (arr[i].includes('>')) {
+//       if (i > 0) arr[i - 1] = arr[i - 1].concat(arr[i]);
+//       else arr[i + 1] = arr[i].concat(arr[i + 1]);
+//       arr.splice(i, 1);
+//     }
+//     counter++;
+//     if (counter >= arr.length) return callback(arr);
+//   }
+// }
+
 function highlightWords(speech, text, callback) {
+  console.log(text);
+  const ARR_LIMIT = (text.includes('<a class="stutter"')) ? 10 : 5;
+
   var arr = text.trim().split(' ');
   const OPEN_SPAN = '<span>';
   const CLOSE_SPAN = '</span>'
@@ -8,15 +29,15 @@ function highlightWords(speech, text, callback) {
     index = 1;
   }
   var readArr = arr.splice(0, index + 1);
-  var nextThree = arr.slice(0, 5).map(word => {
+  var nextFew = arr.slice(0, 5).map(word => {
     parseStutterWord(word, parsed => {
-      console.log(parsed);
+      console.log('word: ' + word);
       return parsed.toLowerCase().replace(/\W/g, '');
     });
   });
   var lastSpokenWord = speech.split(' ').splice(-1)[0].replace(/\W/g, '');
-  var foundIndex = nextThree.indexOf(lastSpokenWord.toLowerCase());
-  console.log(nextThree);
+  var foundIndex = nextFew.indexOf(lastSpokenWord.toLowerCase());
+  console.log(nextFew);
   if (foundIndex > -1) {
     var newlyRead = arr.splice(0, foundIndex + 1);
     readArr.splice(-1, 0, ...newlyRead);
