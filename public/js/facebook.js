@@ -16,7 +16,9 @@ function statusChangeCallback(response) {
         id: response1.id,
         name: response1.name
       });
-      document.cookie = `user=${userInfo};  path=/`;
+      document.cookie = `user=${userInfo};  path=/` 
+      console.log(response1.id);
+
       window.location = "/text";
     });
 
