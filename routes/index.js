@@ -27,7 +27,11 @@ routes.post('/createUser', function(req,res) {
 });
 
 routes.post('/firstSyllable', function(req, res){
-  words.findStutterSyllables('amr', req.body.words);
+  words.findStutterSyllables(req.uid, req.body.words);
+});
+
+routes.post('/uploadMp4', function(req, res){
+  db_helper.storeMp3(req.uid, req.blob);
 });
 
 routes.post('/highlightStutters', function(req, res){
