@@ -16,7 +16,7 @@ firebase.initializeApp(config);
 function writeUserData(uid, name, callback) {
   firebase.database().ref('users/' + uid).set({
     name: name,
-    stutterSyllables: ["hel", "world"],
+    stutterSyllables: ["hel", "world", "air" "an", "ex", "ea"],
     isTrained: false
   }).then(success => {
       callback(true);
