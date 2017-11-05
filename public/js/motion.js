@@ -35,7 +35,7 @@
   var controller = Leap.loop({enableGestures: true}, function(frame){
   if(frame.valid && frame.gestures.length > 0){
     frame.gestures.forEach(function(gesture){
-       (gesture.type === "swipe"){
+       if (gesture.type === "swipe"){
             //Classify swipe as either horizontal or vertical
             var isHorizontal = Math.abs(gesture.direction[0]) > Math.abs(gesture.direction[1]);
             //Classify as right-left or up-down
