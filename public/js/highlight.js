@@ -33,8 +33,8 @@ function highlightWords(speech, text, callback) {
     var newlyRead = arr.splice(0, foundIndex + 1);
     readArr.splice(-1, 0, ...newlyRead);
     readArr = readArr.concat(arr);
-    callback(readArr.join(" "), readArr.indexOf(CLOSE_SPAN));
-  } else callback(null, null);
+    callback(readArr.join(" "), readArr.indexOf(CLOSE_SPAN), readArr.length);
+  } else callback(null, null, null);
 }
 
 function updateStutList(spanPos) {

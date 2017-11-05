@@ -196,6 +196,11 @@ h2 {
   background: #afaeae;
 }
 
+.w3-light-grey {
+  width: 100%;
+  margin: auto;
+}
+
 .loader-holder {
   display: flex;
   height: 100%;

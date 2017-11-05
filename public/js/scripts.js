@@ -100,9 +100,13 @@ function stopRecording(uid) {
  * Event listener for record button
  */
 function handleRecord() {
-  const recordButton = document.querySelector('#record-btn').querySelector('i');
-  recordButton.classList.toggle('fa-microphone');
-  recordButton.classList.toggle('fa-microphone-slash');
+  const recordButton = document.querySelector('#record-btn');
+  // recordButton.classList.toggle('fa-microphone');
+  // recordButton.classList.toggle('fa-microphone-slash');
+  recordButton.classList.add('hidden');
+
+  const progressBar = document.querySelector('.w3-light-grey');
+  progressBar.classList.remove('hidden');
   if (isRecording) {
     getCookie('user', user => {
       if(user !== null && user.length) {

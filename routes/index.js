@@ -40,7 +40,6 @@ routes.post('/uploadMp3', function(req, res){
       //   res.status(500);
       //   res.send('ERROR: Failed to upload mp3 blob.');
       // }
-      setTimeout(() => db.getMp3(req.body.uid, data => console.log(!data)), 3000);
     });
   });
 });

@@ -9,15 +9,20 @@ function performHighlighting(speech) {
 
   // const stutterWord = text.querySelector('.stutter');
 
-  highlightWords(speech, text.innerHTML, (res, spanPos) => {
+  highlightWords(speech, text.innerHTML, (res, spanPos, maxWords) => {
     if (res) {
       text.innerHTML = res;
       updateStutList(spanPos);
+      var percentage = 0;
       // If end of text
       if (res.indexOf('</span>') + '</span>'.length >= res.length) {
+        percentage = 100;
         swapTemplates(LOADING_SCREEN, { text: 'Personalizing info...' });
         setTimeout(() => swapTemplates(INPUT_SCRIPT_TEMPLATE), 3000);
-      }
+      } else if (maxWords) percentage = Math.round(spanPos * 100 / maxWords);
+
+      const progressBar = document.querySelector('.w3-green');
+      progressBar.style.width = `${percentage}%`;
     }
   });
 }
