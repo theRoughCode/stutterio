@@ -36,11 +36,7 @@ routes.post('/uploadMp3', function(req, res){
     if (err) throw err;
     db.storeMp3(req.body.uid, success => {
       if(success) res.send();
-      // else {
-      //   res.status(500);
-      //   res.send('ERROR: Failed to upload mp3 blob.');
-      // }
-      setTimeout(() => db.getMp3(req.body.uid, data => console.log(!data)), 3000);
+      else res.send('ERROR: Error uploading mp3.')
     });
   });
 });
