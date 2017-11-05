@@ -58,25 +58,27 @@ function startRecording() {
 /**
  * Stop recording and get mp3 file
  */
-function stopRecording() {
+function stopRecording(uid) {
   recordRTC.stopRecording(function(audioURL) {
-      // var recordedBlob = this.getBlob();
+      var recordedBlob = this.getBlob();
 
-      document.querySelector('#audio').src = audioURL;
-
+      // document.querySelector('#audio').src = audioURL;
       recordRTC.getDataURL(function(dataURL) {
         // create a new request and send it via the objectUrl
         var request = new XMLHttpRequest();
-        request.open("POST", './audio', true);
+        request.open("POST", './uploadMp3', true);
         request.responseType = "text";
-        request.setRequestHeader("Content-type", "application/json");
         request.onload = function(e){
           // send the blob somewhere else or handle it here
           // use request.response
           // console.log("Server returned: ", e.target.responseText);
           recordRTC.clearRecordedData();
         };
-        request.send(JSON.stringify({ url: dataURL}));
+        var obj = JSON.stringify({
+          uid,
+          blob: recordedBlob
+        });
+        request.send(obj);
         isRecording = false;
       });
   });
@@ -90,7 +92,12 @@ function handleRecord() {
   recordButton.classList.toggle('fa-microphone');
   recordButton.classList.toggle('fa-microphone-slash');
   if (isRecording) {
-    stopRecording();
+    getCookie('user', user => {
+      if(user !== null && user.length) {
+        user = JSON.parse(user);
+        stopRecording(user.id);
+      }
+    });
   } else {
     startRecording();
     startSpeechRecognition();
@@ -128,7 +135,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INPUT_SCRIPT_TEMPLATE);
+    swapTemplates(INTRO_SCREEN_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

@@ -67,15 +67,16 @@ function writeUserData(uid, name, callback) {
     });
   }
 
-function storeMp3(uid, blob){
-  firebase.storage().ref().child(uid).put(blob).then(function(snapshot){
-    console.log("Blob uploaded successfully");
+function storeMp3(uid, blob, callback){
+  firebase.database().ref('users/' + uid).child('mp3').set(blob).then(function(snapshot){
+    if(snapshot) callback(true);
+    else callback(false);
   })
 }
 
   module.exports = {
     addStutterSyllable,
     writeUserData,
-    getStutterList
+    getStutterList,
     storeMp3
   }
