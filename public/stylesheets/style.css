@@ -107,7 +107,7 @@ h2 {
 
 .input-holder {
   margin: auto;
-  height: auto;
+  max-height: 80%;
   display: flex;
 }
 
@@ -142,6 +142,7 @@ h2 {
   line-height:3rem;
   width: 50%;
   height: auto;
+  overflow: scroll;
 }
 
 .words span {
@@ -247,6 +248,10 @@ h2 {
 
 .hidden {
   display: none;
+}
+
+.threshold {
+  height: 100%;
 }
 
 .threshold .carousel-control {
