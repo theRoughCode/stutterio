@@ -31,13 +31,14 @@ routes.post('/firstSyllable', function(req, res){
 });
 
 routes.post('/uploadMp3', function(req, res){
-  db.storeMp3(req.body.uid, req.body.blob, success => {
-    if(success) res.send();
-    else {
-      res.status(500);
-      res.send('ERROR: Failed to upload mp3 blob.');
-    }
-  });
+  console.log(req);
+  // db.storeMp3(req.body.uid, req.body.blob, success => {
+  //   if(success) res.send();
+  //   else {
+  //     res.status(500);
+  //     res.send('ERROR: Failed to upload mp3 blob.');
+  //   }
+  // });
 });
 
 routes.post('/highlightStutters', function(req, res){
