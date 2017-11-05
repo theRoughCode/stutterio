@@ -42,7 +42,7 @@ function writeUserData(uid, name, callback) {
   }
 
   function getStutterList(uid, callback){
-    firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
+    firebase.database().ref('/users/'+uid+'/stutterSyllables').once("value", function(snapshot){
       if (!snapshot.val()) return callback(null);
       var arr = [];
       asyncjs.forEachOf(snapshot.val(), (value, key, callback1) => {
@@ -61,10 +61,11 @@ function writeUserData(uid, name, callback) {
 
   function readUserData(userId, callback){
     var userRef = firebase.database().ref('users/' + userId);
-    userRef.on("value", function(snapshot){
+    userRef.once("value", function(snapshot){
       return callback(snapshot.val());
-    },   function(error){
+    }, function(error){
       console.log("Error: " + error.code  );
+      return callback(null);
     });
   }
 
@@ -90,10 +91,10 @@ function storeMp3(uid, callback){
 
 function getMp3(uid, callback) {
   var userRef = firebase.database().ref(`users/${uid}/mp3`);
-  userRef.on("value", function(snapshot){
+  userRef.once("value", function(snapshot){
     // console.log(snapshot.val());
     return callback(snapshot.val());
-  },   function(error){
+  }, function(error){
     console.log("Error: " + error.code  );
     callback(null);
   });
