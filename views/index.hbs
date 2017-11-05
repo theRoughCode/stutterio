@@ -2,24 +2,103 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <meta charset="utf-8">
     <title>Stutter.io</title>
+    <script src="../public/js/facebook.js"></script>
   </head>
   <body>
     <div class="header">
-      <h1>Welcome to Stutter.IO</h1>
-    </div>
-    <div class="body">
-      <div class="input-holder">
-        <textarea id="input-body" cols="40" rows="5" placeholder="{{ text }}"></textarea>
-        <div class="btn-holder">
-          <button id="record-btn" onclick="handleRecord()">Record</button>
-          <button id="submit-btn" onclick="handleSubmit()">Submit</button>
-        </div>
-        <audio id="audio" controls autoplay></audio>
+      <h1>Stutter.io</h1>
+      <div class="account">
+        <a class="logout" onclick="logout()">Logout</a>
       </div>
     </div>
+    <div class="body">
+      <!-- Templates -->
+    </div>
+
+    <!-- Main Title Screen that appears when the page loads for the first time -->
+    <script id="intro-screen-template" type="text/template">
+      <div class="description">
+        <div class="description-content">
+          <h3>Hi, welcome to Stutter.io!</h3>
+          Many people face huge social anxiety from stuttering and other various speech impediments.  This app aims to minimize that risk by learning which words you have trouble pronouncing and then helping you generate speeches.<br />
+          Let's have you read the paragraph on the right.  When you're ready, press the microphone button!
+        </div>
+      </div>
+      <div class="input-holder">
+        <div class="words" contenteditable>
+          {{{ text }}}
+        </div>
+      </div>
+      <div class="btn-holder">
+        <button id="record-btn" onclick="handleRecord()">
+          <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- <audio id="audio" controls autoplay></audio> -->
+    </script>
+
+    <!-- Secondary Screen for user to input prepared speech to optimize -->
+    <script id="input-script-template" type="text/template">
+      <div class="description">
+        <div class="description-content">
+          <h3>Welcome back to Stutter.io!</h3>
+          Now that we have your personalized info on words that you might stumble on, we are set to help you minimize the risk of stuttering during your speeches.  Place any text within the text area and press the Upload button once done!
+        </div>
+      </div>
+      <div class="input-holder">
+        <textarea class="input-body" cols="40" rows="5" placeholder="insert script here..."></textarea>
+      </div>
+      <div class="btn-holder">
+        <button id="submit-btn" onclick="handleSubmit()">
+          <i class="fa fa-upload" aria-hidden="true"></i>
+        </button>
+      </div>
+    </script>
+
+    <!-- Loading Screen -->
+    <script id="loading-screen" type="text/template">
+      <div class="loader-holder">
+        <div class="loading-text">
+          <h3 id="loading-text">Personalizing info...</h3>
+        </div>
+        <div class="loader"></div>
+      </div>
+    </script>
+
+    <!-- Main Title Screen that appears when the page loads for the first time -->
+    <script id="optimized-template" type="text/template">
+      <div class="input-holder">
+        <div class="words" contenteditable>
+          {{{ text }}}
+        </div>
+      </div>
+      <div class="stutter hidden"></div>
+      <div class="btn-holder">
+        <button id="record-btn" onclick="handleRecord()">
+          <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- <audio id="audio" controls autoplay></audio> -->
+    </script>
+
+    <!-- JavaScripts -->
     <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
+    <script src="../public/js/template.js"></script>
     <script src="../public/js/scripts.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://js.leapmotion.com/leap-0.6.2.min.js"></script>
+    <script>
+        const PALM_HTML	= "<div class='palm'><img src='../public/download/images/palm.png' /></div>";
+        const DIP_HTML	= "<div class='dip'><img src='../public/download/images/dip.png' /></div>";
+        const PIP_HTML	= "<div class='pip'><img src='../public/download/images/pip.png' /></div>";
+        const MCP_HTML	= "<div class='mcp'><img src='../public/download/images/mcp.png' /></div>";
+        const LABEL_HTML = "<div class='finger_label'></div>";
+    </script>
+    <script src="../public/js/motion.js"></script>
+    <script src="../public/js/highlight.js"></script>
+    <script src="../public/js/speech.js"></script>
   </body>
 </html>
