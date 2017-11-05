@@ -103,6 +103,7 @@ h1 {
 }
 
 #record-btn, #submit-btn {
+  color: black;
   margin: auto;
   background: white;
   font-size: 45px;
@@ -163,20 +164,24 @@ h1 {
 }
 
 .threshold .carousel-control {
-  border: 1px solid red;
-  margin: auto;
-  height: auto;
-}
+   border: 1px solid red;
+   margin: auto;
+   height: auto;
+ }
 
-.carousel{
-    background: #ff8000;
-}
-.carousel .item{
-    height: 200px; /* Prevent carousel from being distorted if for some reason image doesn't load */
-}
-.carousel .item img{
-    margin: 0 auto; /* Align slide image horizontally center */
-}
-.carousel-caption{
-  color: white;
-}
+ .carousel{
+       background: #ff8000;
+       margin-top: 20px;
+   }
+   .carousel .item{
+       min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+   }
+   .carousel .item img{
+       margin: 0 auto; /* Align slide image horizontally center */
+   }
+   .carousel-caption{
+     color: black;
+   }
+   .bs-example{
+     margin: 20px;
+   }
