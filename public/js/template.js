@@ -7,6 +7,7 @@ function swapTemplates(template, params = null) {
   const body = document.querySelector('.body');
   body.innerHTML = template;
 
+
   if (template === INTRO_SCREEN_TEMPLATE || template === OPTIMIZED_TEMPLATE) {
     document.querySelector('#record-btn').addEventListener('keypress', e => {
       var key = e.which || e.keyCode;
@@ -19,12 +20,17 @@ function swapTemplates(template, params = null) {
 
       const stutterWords = document.querySelector('.stutter');
       stutterWords.innerHTML = params.stutterList;
+    } else {
+      document.querySelector('#optimize-link').classList.remove('selected');
+      document.querySelector('#retrain-link').classList.add('selected');
     }
   } else if (template === INPUT_SCRIPT_TEMPLATE) {
     document.addEventListener('keydown', e => {
       var key = e.which || e.keyCode;
       if (e.ctrlKey && key === 13) handleSubmit();
     });
+    document.querySelector('#retrain-link').classList.remove('selected');
+    document.querySelector('#optimize-link').classList.add('selected');
   } else if (template === LOADING_SCREEN) {
     document.querySelector('#loading-text').innerHTML = params.text;
   }

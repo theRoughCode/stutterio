@@ -72,14 +72,22 @@ function writeUserData(uid, name, callback) {
 function storeMp3(uid, callback){
   // var storageRef = firebase.storage().ref();
   // var mp3Ref = storageRef.child(`${uid}.mp3`);
-
-  fs.readFile(`./routes/${uid}.mp3`, function(err,data){
+  var filePath = `./routes/${uid}.mp3`;
+  fs.readFile(filePath, function(err,data){
     if (!err) {
         console.log('received data');
         var base64File = new Buffer(data, 'binary').toString('base64');
         firebase.database().ref('users/' + uid).child('mp3').set(base64File).then(function(snapshot){
           if(snapshot) callback(true);
           else callback(false);
+
+          fs.unlink(filePath, (err) => {
+            if (err) {
+                console.log("failed to delete local mp3:" + err);
+            } else {
+                console.log('successfully deleted local mp3');
+            }
+          });
         });
     } else {
         console.log(err);

@@ -15,12 +15,50 @@ body {
 .header {
   top: 0;
   display: flex;
-  padding: 10px 30px;
+  height: 10%;
+}
+
+.header-container {
+  margin: auto;
+  display: flex;
+  width: 100%;
+}
+
+.menu {
+  margin: 10px;
+  display: flex;
+  width: 15%;
+}
+
+.header-container a {
+  color: #dbd6d6;
+  font-size: 18px;
+  margin: auto;
+  cursor: pointer;
+  -webkit-transition-duration: 5s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  border-bottom: 4px solid black;
+}
+
+.header-container a:hover {
+  color: white;
+  border-bottom-color: green;
+  font-size: 19px;
+}
+
+.header-container .selected {
+  border-bottom-color: white;
+}
+
+.link-container {
+  margin: 10px auto;
+  display: flex;
+  width: 50%;
 }
 
 h1 {
   margin: 10px auto;
-  margin-top: 30px;
 }
 
 .subtitle {
@@ -42,25 +80,6 @@ h2 {
 
 .fb-login-button {
   margin: auto;
-}
-
-.account {
-  display: flex;
-  float: right;
-}
-
-.logout {
-  color: #dbd6d6;
-  border: none;
-  font-size: 18px;
-  margin: auto;
-  cursor: pointer;
-  -webkit-transition-duration: 5s; /* Safari */
-  transition-duration: 0.4s;
-}
-
-.logout:hover {
-  color: white;
 }
 
 .body {
