@@ -142,6 +142,7 @@ function handleSubmit() {
           text: optimized,
           stutterList: request.response
         });
+        updateCarousel();
       }, 1000));
   };
 
@@ -161,7 +162,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INTRO_SCREEN_TEMPLATE);
+    swapTemplates(INPUT_SCRIPT_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {
