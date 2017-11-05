@@ -6,27 +6,33 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta charset="utf-8">
     <title>Stutter.io</title>
-    <script src="../public/js/facebook.js"></script>
   </head>
   <body>
+  <style type="text/css">
+  .carousel{
+      background: #ff8000;
+      margin-top: 20px;
+  }
+  .carousel .item{
+      min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+  }
+  .carousel .item img{
+      margin: 0 auto; /* Align slide image horizontally center */
+  }
+  .carousel-caption{
+    color: black;
+  }
+  .bs-example{
+    margin: 20px;
+  }
+  </style>
     <div class="header">
-      <div class="header-container">
-        <div class="menu">
-          <div class="link-container">
-            <a class="selected" id="retrain-link" onclick="swapTemplates(INTRO_SCREEN_TEMPLATE)">Retrain</a>
-          </div>
-          <div class="link-container">
-            <a id="optimize-link"  onclick="swapTemplates(INPUT_SCRIPT_TEMPLATE)">Optimize</a>
-          </div>
-        </div>
-        <h1>Stutter.io</h1>
-        <div class="menu">
-          <div class="link-container">
-            <a class="logout" onclick="logout()">Logout</a>
-          </div>
-        </div>
+      <h1>Stutter.io</h1>
+      <div class="account">
+        <button class="logout" onclick="logout()">Logout</button>
       </div>
     </div>
     <div class="body">
@@ -35,13 +41,6 @@
 
     <!-- Main Title Screen that appears when the page loads for the first time -->
     <script id="intro-screen-template" type="text/template">
-      <div class="description">
-        <div class="description-content">
-          <h3>Hi, welcome to Stutter.io!</h3>
-          Many people face huge social anxiety from stuttering and other various speech impediments.  This app aims to minimize that risk by learning which words you have trouble pronouncing and then helping you generate speeches.<br />
-          Let's have you read the paragraph on the right.  When you're ready, press the microphone button!
-        </div>
-      </div>
       <div class="input-holder">
         <div class="words" contenteditable>
           {{{ text }}}
@@ -60,12 +59,6 @@
 
     <!-- Secondary Screen for user to input prepared speech to optimize -->
     <script id="input-script-template" type="text/template">
-      <div class="description">
-        <div class="description-content">
-          <h3>Welcome back to Stutter.io!</h3>
-          Now that we have your personalized info on words that you might stumble on, we are set to help you minimize the risk of stuttering during your speeches.  Place any text within the text area and press the Upload button once done!
-        </div>
-      </div>
       <div class="input-holder">
         <textarea class="input-body" cols="40" rows="5" placeholder="insert script here..."></textarea>
       </div>
@@ -79,21 +72,12 @@
     <!-- Loading Screen -->
     <script id="loading-screen" type="text/template">
       <div class="loader-holder">
-        <div class="loading-text">
-          <h3 id="loading-text"></h3>
-        </div>
         <div class="loader"></div>
       </div>
     </script>
 
     <!-- Main Title Screen that appears when the page loads for the first time -->
     <script id="optimized-template" type="text/template">
-      <div class="description">
-        <div class="description-content">
-          <h3>Your script has been optimized!</h3>
-          We've highlighted some words we think you might have trouble on.  Below you will see a carousel of possible synonyms you can use to substitute for the next highlighted word.  If you have a Leap Motion<sup>TM</sup> device, swipe left or right to scroll through the available synonyms.
-        </div>
-      </div>
       <div class="input-holder">
         <div class="words" contenteditable>
           {{{ text }}}
@@ -124,7 +108,6 @@
       </div>
       <!-- <audio id="audio" controls autoplay></audio> -->
     </script>
-
     <!-- JavaScripts -->
     <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
     <script src="../public/js/template.js"></script>
