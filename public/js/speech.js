@@ -19,6 +19,7 @@ function performHighlighting(speech) {
         percentage = 100;
         swapTemplates(LOADING_SCREEN, { text: 'Personalizing info...' });
         setTimeout(() => swapTemplates(INPUT_SCRIPT_TEMPLATE), 3000);
+        handleRecord();
       } else if (maxWords) percentage = Math.round(spanPos * 100 / maxWords);
 
       const progressBar = document.querySelector('.w3-green');

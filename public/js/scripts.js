@@ -59,6 +59,7 @@ function startRecording() {
  * Stop recording and get mp3 file
  */
 function stopRecording(uid) {
+  TRAINING_TEXT = "I have four cats and five dogs.  They were eager to go to the beachfront."
   recordRTC.stopRecording(function(audioURL) {
       var recordedBlob = this.getBlob();
 
@@ -72,7 +73,7 @@ function stopRecording(uid) {
           // send the blob somewhere else or handle it here
           // use request.response
           // console.log("Server returned: ", e.target.responseText);
-
+          console.log("HELLO PLEASE");
           var request = new XMLHttpRequest();
           request.open("POST", `http://localhost:5000/iterationComplete/${uid}`, true);
           request.responseType = "text";
@@ -103,7 +104,7 @@ function handleRecord() {
   const recordButton = document.querySelector('#record-btn');
   // recordButton.classList.toggle('fa-microphone');
   // recordButton.classList.toggle('fa-microphone-slash');
-  recordButton.classList.add('hidden');
+  if (recordButton)recordButton.classList.add('hidden');
 
   const progressBar = document.querySelector('.w3-light-grey');
   if(progressBar) progressBar.classList.remove('hidden');
@@ -111,6 +112,7 @@ function handleRecord() {
     getCookie('user', user => {
       if(user !== null && user.length) {
         user = JSON.parse(user);
+        console.log(user.id);
         stopRecording(user.id);
       }
     });

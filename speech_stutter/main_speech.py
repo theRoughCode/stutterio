@@ -68,7 +68,7 @@ def startProcessing(filename):
 
 	### This API call is not working right now...
 	try:
-		result = subprocess.check_output(['curl -F "audio=@output.wav" -F "transcript=@transcript.txt" "http://gentle-demo.lowerquality.com/transcriptions?async=false"'], stderr=open('/dev/null', 'w'), shell=True)
+		result = subprocess.check_output(['curl -F "audio=@output.wav" -F "transcript=@transcript.txt" "http://localhost:8765/transcriptions?async=false"'], stderr=open('/dev/null', 'w'), shell=True)
 	except subprocess.CalledProcessError as e:
 	    raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
 

@@ -13,12 +13,15 @@ import pyrebase
 import base64
 import json
 import subprocess
+from flask_cors import CORS
+
 
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
 
 app = Flask(__name__)
+CORS(app)
 
 config = {
   "apiKey": "AIzaSyC33Y85QzhPvfargKMOoJYSum1XUujo1bg",
@@ -38,7 +41,7 @@ def home():
     return "Hello World"
 
 
-@app.route('/iterationComplete/<int:id>')
+@app.route('/iterationComplete/<int:id>', methods=["POST"])
 def iterationComplete(id):
     ###### Connect to firebase and fetch the mp3
     payload = {'id': id}
