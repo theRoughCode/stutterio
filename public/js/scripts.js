@@ -62,9 +62,40 @@ function stopRecording(uid) {
   recordRTC.stopRecording(function(audioURL) {
       var recordedBlob = this.getBlob();
 
-      // document.querySelector('#audio').src = audioURL;
+      // var arrayBuffer;
+      // var fileReader = new FileReader();
+      // fileReader.onload = function() {
+      //     arrayBuffer = this.result;
+      //     console.log(arrayBuffer);
+      //     console.log(arrayBuffer.byteLength);
+      //
+      //     fileReader.readAsArrayBuffer(recordedBlob);
+      //
+      //     // socket.emit('mp3Ready', { mp3: 'data' });
+      //     ss(socket).emit('mp3Ready', stream, {name: 'test.mp3'});
+      //     ss.createBlobReadStream(arrayBuffer).pipe(stream);
+      //
+      //     // upload a file to the server.
+      //
+      //     // var blobStream = ss.createBlobReadStream(arrayBuffer);
+      //     // var size = 0;
+      //     //
+      //     // blobStream.on('data', function(chunk) {
+      //     //   size += chunk.length;
+      //     //   console.log(Math.floor(size / file.size * 100) + '%');
+      //     //   // -> e.g. '42%'
+      //     // });
+      //     //
+      //     // blobStream.pipe(stream);
+      // };
+      //
+      // fileReader.readAsArrayBuffer(recordedBlob);
+
+
+
+      document.querySelector('#audio').src = audioURL;
       recordRTC.getDataURL(function(dataURL) {
-        // create a new request and send it via the objectUrl
+        create a new request and send it via the objectUrl
         var request = new XMLHttpRequest();
         request.open("POST", './uploadMp3', true);
         request.responseType = "text";
@@ -72,6 +103,7 @@ function stopRecording(uid) {
           // send the blob somewhere else or handle it here
           // use request.response
           // console.log("Server returned: ", e.target.responseText);
+
           recordRTC.clearRecordedData();
         };
         var obj = JSON.stringify({
@@ -145,7 +177,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INPUT_SCRIPT_TEMPLATE);
+    swapTemplates(INTRO_SCREEN_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {
@@ -169,3 +201,6 @@ checkUserLoggedIn(success => {
     }
   } else window.location = '/';
 });
+
+var socket = io.connect('http://localhost:8000');
+var stream = ss.createStream();

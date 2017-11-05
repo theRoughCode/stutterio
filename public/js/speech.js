@@ -27,7 +27,7 @@ recognition.addEventListener('result', e => {
     .map(result => result[0])
     .map(result => result.transcript).join('');
 
-    console.log(transcript);
+    // console.log(transcript);
     performHighlighting(transcript);
 
     if (transcript.includes('background') && transcript.includes('change')){
