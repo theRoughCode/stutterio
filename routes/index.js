@@ -31,20 +31,28 @@ routes.post('/firstSyllable', function(req, res){
 });
 
 routes.post('/uploadMp3', function(req, res){
-  console.log(req);
-  // db.storeMp3(req.body.uid, req.body.blob, success => {
-  //   if(success) res.send();
-  //   else {
-  //     res.status(500);
-  //     res.send('ERROR: Failed to upload mp3 blob.');
-  //   }
-  // });
+  console.log(req.body.uid);
+  save(req.body.url, `${req.body.uid}.mp3`, (err, data) => {
+    if (err) throw err;
+    db.storeMp3(req.body.uid, success => {
+      if(success) res.send();
+      // else {
+      //   res.status(500);
+      //   res.send('ERROR: Failed to upload mp3 blob.');
+      // }
+      setTimeout(() => db.getMp3(req.body.uid, data => console.log(!data)), 3000);
+    });
+  });
 });
 
 routes.post('/highlightStutters', function(req, res){
   words.listOfStutterWords(req.body.user, req.body.text, result => {
     res.send(result);
   });
+});
+
+routes.post('/getUser', function(req, res) {
+  db.readUserData(req.body.id, userData => res.send(userData));
 });
 
 module.exports = routes;

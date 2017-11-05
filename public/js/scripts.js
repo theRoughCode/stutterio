@@ -93,12 +93,13 @@ function stopRecording(uid) {
 
 
 
-      document.querySelector('#audio').src = audioURL;
+      // document.querySelector('#audio').src = audioURL;
       recordRTC.getDataURL(function(dataURL) {
-        create a new request and send it via the objectUrl
+        // create a new request and send it via the objectUrl
         var request = new XMLHttpRequest();
         request.open("POST", './uploadMp3', true);
         request.responseType = "text";
+        request.setRequestHeader("Content-type", "application/json");
         request.onload = function(e){
           // send the blob somewhere else or handle it here
           // use request.response
@@ -108,7 +109,7 @@ function stopRecording(uid) {
         };
         var obj = JSON.stringify({
           uid,
-          blob: recordedBlob
+          url: dataURL
         });
         request.send(obj);
         isRecording = false;

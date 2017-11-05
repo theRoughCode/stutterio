@@ -1,5 +1,6 @@
 var firebase = require('firebase');
 const asyncjs = require('async');
+const fs = require('fs');
 
 var config = {
   apiKey: "AIzaSyC33Y85QzhPvfargKMOoJYSum1XUujo1bg",
@@ -58,25 +59,51 @@ function writeUserData(uid, name, callback) {
     });
   }
 
-  function readUserData(userId){
+  function readUserData(userId, callback){
     var userRef = firebase.database().ref('users/' + userId);
     userRef.on("value", function(snapshot){
-      return snapshot.val();
+      return callback(snapshot.val());
     },   function(error){
       console.log("Error: " + error.code  );
     });
   }
 
-function storeMp3(uid, blob, callback){
-  firebase.database().ref('users/' + uid).child('mp3').set(blob).then(function(snapshot){
-    if(snapshot) callback(true);
-    else callback(false);
-  })
+function storeMp3(uid, callback){
+  // var storageRef = firebase.storage().ref();
+  // var mp3Ref = storageRef.child(`${uid}.mp3`);
+
+  fs.readFile(`./routes/${uid}.mp3`, function(err,data){
+
+    if (!err) {
+        console.log('received data: ' + data);
+        var base64File = new Buffer(data, 'binary').toString('base64');
+        firebase.database().ref('users/' + uid).child('mp3').set(base64File).then(function(snapshot){
+          if(snapshot) callback(true);
+          else callback(false);
+        });
+    } else {
+        console.log(err);
+    }
+});
+
+}
+
+function getMp3(uid, callback) {
+  var userRef = firebase.database().ref(`users/${uid}/mp3`);
+  userRef.on("value", function(snapshot){
+    // console.log(snapshot.val());
+    return callback(snapshot.val());
+  },   function(error){
+    console.log("Error: " + error.code  );
+    callback(null);
+  });
 }
 
   module.exports = {
     addStutterSyllable,
     writeUserData,
+    readUserData,
     getStutterList,
-    storeMp3
+    storeMp3,
+    getMp3
   }
