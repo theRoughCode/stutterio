@@ -16,6 +16,10 @@ routes.get('/3', function(req, res) {
   res.render('three');
 });
 
+routes.post('/updateUser', function(req, res) {
+  db.addStutterSyllable(req.body.uid, req.body.syllables);
+})
+
 routes.post('/createUser', function(req,res) {
   db.writeUserData(req.body.id, req.body.name, success => {
     if (success) res.send();

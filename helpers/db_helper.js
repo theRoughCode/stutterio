@@ -12,11 +12,13 @@ var config = {
 };
 firebase.initializeApp(config);
 
+const default = ["hel", "world", "air", "an", "ex", "ea"];
+
 // helper for database functions
 function writeUserData(uid, name, callback) {
   firebase.database().ref('users/' + uid).set({
     name: name,
-    stutterSyllables: ["hel", "world", "air", "an", "ex", "ea"],
+    stutterSyllables: [],
     isTrained: false
   }).then(success => {
       callback(true);
@@ -26,18 +28,28 @@ function writeUserData(uid, name, callback) {
   }
 
   // adds syllables to user's list of stutter syllables
-  function addStutterSyllable(uid, syllable) {
+  function addStutterSyllable(uid, syllables) {
+    if (!syllables && !syllables.length) syllables = default;
+    
     firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
       var array = Object.values(snapshot.val());
       // console.log(array);
-      if(array.indexOf(syllable) == -1){
-        array.push(syllable);
-      }
+      asyncjs.forEachOf(syllables, (value, key, callback1) => {
+        if(array.indexOf(value) == -1){
+          array.push(value);
+        }
+        callback1();
+      }, err => {
+        if(!err) {
+          firebase.database().ref('/users/'+uid).set({
+            stutterSyllables: array
+          });
+        }
+      })
+
       // console.log(syllable);
       // console.log(array);
-      firebase.database().ref('/users/'+uid).set({
-        stutterSyllables: array
-      });
+
     });
   }
 

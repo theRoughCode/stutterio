@@ -73,13 +73,24 @@ function stopRecording(uid) {
           // send the blob somewhere else or handle it here
           // use request.response
           // console.log("Server returned: ", e.target.responseText);
-          console.log("HELLO PLEASE");
           var request = new XMLHttpRequest();
           request.open("POST", `http://localhost:5000/iterationComplete/${uid}`, true);
           request.responseType = "text";
           request.setRequestHeader("Content-type", "application/json");
           request.onload = function(e){
             console.log("Pinged Python server.");
+
+            var request = new XMLHttpRequest();
+            request.open("POST", `/updateUser`, true);
+            request.responseType = "text";
+            request.setRequestHeader("Content-type", "application/json");
+            request.onload = function(e){
+              console.log("Updated syllables.");
+            };
+            request.send(JSON.stringify({
+              uid,
+              syllables: request.response
+            }));
           };
           request.send(JSON.stringify({
             transcript: TRAINING_TEXT
@@ -130,7 +141,7 @@ function handleSubmit() {
   if(script) script = script.value;
 
   if (!script) return;
-  
+
   var request = new XMLHttpRequest();
   request.open("POST", './highlightStutters', true);
   request.responseType = "text";
