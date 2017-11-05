@@ -105,7 +105,7 @@ function handleRecord() {
 }
 
 /**
- * Event listener for subnit button
+ * Event listener for submit button
  */
 function handleSubmit() {
   const script = document.querySelector('.input-body').value;
@@ -116,7 +116,15 @@ function handleSubmit() {
   request.onload = function(e){
     // send the blob somewhere else or handle it here
     // use request.response
-    optimizeScript(script, request.response, optimized => swapTemplates(INTRO_SCREEN_TEMPLATE, { text: optimized }));
+    // swapTemplates(OPTIMIZED_TEMPLATE, {
+    //   text: script,
+    //   stutterList: request.response
+    // });
+    optimizeScript(script, request.response, optimized =>
+      swapTemplates(OPTIMIZED_TEMPLATE, {
+        text: optimized,
+        stutterList: request.response
+      }));
   };
 
   getCookie('user', user => {
@@ -124,7 +132,7 @@ function handleSubmit() {
       user = JSON.parse(user);
       request.send(JSON.stringify({
         user: user.id,
-        text: script
+        text: script.replace(/[^\w\s]|_/g, "")
       }));
     }
   });
@@ -135,7 +143,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INTRO_SCREEN_TEMPLATE);
+    swapTemplates(INPUT_SCRIPT_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

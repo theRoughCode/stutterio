@@ -51,6 +51,22 @@
       </div>
     </script>
 
+    <!-- Main Title Screen that appears when the page loads for the first time -->
+    <script id="optimized-template" type="text/template">
+      <div class="input-holder">
+        <div class="words" contenteditable>
+          {{{ text }}}
+        </div>
+      </div>
+      <div class="stutter hidden"></div>
+      <div class="btn-holder">
+        <button id="record-btn" onclick="handleRecord()">
+          <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- <audio id="audio" controls autoplay></audio> -->
+    </script>
+
     <!-- JavaScripts -->
     <script src="https://github.com/muaz-khan/RecordRTC/releases/download/5.4.5/RecordRTC.js"></script>
     <script src="../public/js/template.js"></script>

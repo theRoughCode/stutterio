@@ -17,27 +17,30 @@
 // }
 
 function highlightWords(speech, text, callback) {
-  console.log(text);
-  const ARR_LIMIT = (text.includes('<a class="stutter"')) ? 10 : 5;
-
   var arr = text.trim().split(' ');
   const OPEN_SPAN = '<span>';
-  const CLOSE_SPAN = '</span>'
+  const CLOSE_SPAN = '</span>';
   var index = arr.indexOf(CLOSE_SPAN);
   if (index === -1) {
     arr.unshift(OPEN_SPAN, CLOSE_SPAN);
     index = 1;
   }
   var readArr = arr.splice(0, index + 1);
-  var nextFew = arr.slice(0, ARR_LIMIT).map(word => word.toLowerCase().replace(/\W/g, ''));
+  var nextFew = arr.slice(0, 5).map(word => word.toLowerCase().replace('<a>', '').replace('</a>', '').replace(/\W/g, ''));
   var lastSpokenWord = speech.split(' ').splice(-1)[0].replace(/\W/g, '');
   var foundIndex = nextFew.indexOf(lastSpokenWord.toLowerCase());
-  console.log(nextFew);
   if (foundIndex > -1) {
     var newlyRead = arr.splice(0, foundIndex + 1);
     readArr.splice(-1, 0, ...newlyRead);
-    callback(readArr.concat(arr).join(" "));
-  } else callback(null);
+    readArr = readArr.concat(arr);
+    callback(readArr.join(" "), readArr.indexOf(CLOSE_SPAN));
+  } else callback(null, null);
+}
+
+function updateStutList(spanPos) {
+  const stutDom = document.querySelector('.stutter');
+  const stutList = JSON.parse(stutDom.innerHTML);
+  stutDom.innerHTML = JSON.stringify(stutList.filter(obj => obj.index > spanPos));
 }
 
 // function parseStutterWord(word, callback) {
@@ -46,9 +49,9 @@ function highlightWords(speech, text, callback) {
 //   callback(word.slice(startIndex, endIndex));
 // }
 
-function populateWord(word, synonyms) {
-  return `<a class="stutter" data-length="${synonyms.length}" data-synonyms="${synonyms}">${word}</a>`;
-}
+// function populateWord(word, synonyms) {
+//   return `<a class="stutter" data-length="${synonyms.length}" data-synonyms="${synonyms}">${word}</a>`;
+// }
 
 /**
  * Takes in user's text and list of potential stutters, and highlights and provides synonyms
@@ -58,14 +61,14 @@ function optimizeScript(text, stutList, callback) {
   else stutList = JSON.parse(stutList);
 
   stutList.sort((a, b) => a.index - b.index);
-  text = text.split(" ");
+  var textArr = text.split(" ");
 
   var count = 0;
   stutList.forEach(entry => {
     count++;
-    text[entry.index] = populateWord(text[entry.index], entry.synonyms);
+    textArr[entry.index] = `<a>${textArr[entry.index]}</a>`;
     if (count === stutList.length) {
-      return callback(text.join(" "));
+      return callback(textArr.join(" "));
     }
   })
 }

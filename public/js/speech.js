@@ -9,8 +9,11 @@ function performHighlighting(speech) {
 
   // const stutterWord = text.querySelector('.stutter');
 
-  highlightWords(speech, text.innerHTML, res => {
-    if (res) text.innerHTML = res;
+  highlightWords(speech, text.innerHTML, (res, spanPos) => {
+    if (res) {
+      text.innerHTML = res;
+      updateStutList(spanPos);
+    }
   });
 }
 

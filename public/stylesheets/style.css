@@ -72,13 +72,14 @@ h1 {
   text-decoration: none;
   cursor: text;
   color: black;
-}
-
-.words .stutter {
   color: black;
   background: #ff8282;
   border-radius: 8px;
   padding: 0 5px;
+}
+
+.words span a {
+  color: red;
 }
 
 .words:before {
@@ -148,4 +149,8 @@ h1 {
 	font-family: arial !important;
 	font-size: 12px !important;
 	color: #0aa !important;
+}
+
+.hidden {
+  display: none;
 }
