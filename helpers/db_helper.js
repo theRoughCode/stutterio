@@ -59,10 +59,10 @@ function writeUserData(uid, name, callback) {
     });
   }
 
-  function readUserData(userId){
+  function readUserData(userId, callback){
     var userRef = firebase.database().ref('users/' + userId);
     userRef.on("value", function(snapshot){
-      return snapshot.val();
+      return callback(snapshot.val());
     },   function(error){
       console.log("Error: " + error.code  );
     });
@@ -102,6 +102,7 @@ function getMp3(uid, callback) {
   module.exports = {
     addStutterSyllable,
     writeUserData,
+    readUserData,
     getStutterList,
     storeMp3,
     getMp3

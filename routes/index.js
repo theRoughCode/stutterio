@@ -51,4 +51,8 @@ routes.post('/highlightStutters', function(req, res){
   });
 });
 
+routes.post('/getUser', function(req, res) {
+  db.readUserData(req.body.id, userData => res.send(userData));
+});
+
 module.exports = routes;
