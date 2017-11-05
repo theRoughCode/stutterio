@@ -126,6 +126,9 @@ function handleRecord() {
 function handleSubmit() {
   var script = document.querySelector('.input-body');
   if(script) script = script.value;
+
+  if (!script) return;
+  
   var request = new XMLHttpRequest();
   request.open("POST", './highlightStutters', true);
   request.responseType = "text";
