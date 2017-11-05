@@ -7,6 +7,8 @@ function performHighlighting(speech) {
   const text = document.querySelector('.words');
   if (!text) return;
 
+  const stutterWord = text.querySelector('.stutter');
+
   highlightWords(speech, text.innerHTML, res => {
     if (res) text.innerHTML = res;
   });
@@ -17,6 +19,7 @@ recognition.addEventListener('result', e => {
     .map(result => result[0])
     .map(result => result.transcript).join('');
 
+    console.log(transcript);
     performHighlighting(transcript);
 
     if (transcript.includes('background') && transcript.includes('change')){
@@ -38,5 +41,6 @@ function startSpeechRecognition() {
 }
 
 function stopSpeechRecognition() {
+  recognition.removeEventListener('end', recognition.start);
   recognition.stop();
 }

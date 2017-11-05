@@ -28,7 +28,7 @@ function getCookie(cname, callback) {
       request.responseType = "text";
       request.setRequestHeader("Content-type", "application/json");
       request.onload = function(e){
-        console.log("Server returned: ", e.target.responseText);
+        // console.log("Server returned: ", e.target.responseText);
       };
       request.send(JSON.stringify({
         id: user.id,
@@ -73,7 +73,7 @@ function stopRecording() {
         request.onload = function(e){
           // send the blob somewhere else or handle it here
           // use request.response
-          console.log("Server returned: ", e.target.responseText);
+          // console.log("Server returned: ", e.target.responseText);
           recordRTC.clearRecordedData();
         };
         request.send(JSON.stringify({ url: dataURL}));
@@ -109,8 +109,7 @@ function handleSubmit() {
   request.onload = function(e){
     // send the blob somewhere else or handle it here
     // use request.response
-    console.log("Server returned: ", e.target.responseText);
-    optimizeScript(script, request.response, optimized => swapTemplates(OPTIMIZE_SCRIPT, { text: optimized }));
+    optimizeScript(script, request.response, optimized => swapTemplates(INTRO_SCREEN_TEMPLATE, { text: optimized }));
   };
 
   getCookie('user', user => {

@@ -8,9 +8,15 @@ function highlightWords(speech, text, callback) {
     index = 1;
   }
   var readArr = arr.splice(0, index + 1);
-  var nextThree = arr.slice(0, 5).map(word => word.toLowerCase().replace(/\W/g, ''));
-  var lastSpokenWord = speech.split(' ').splice(-1)[0];
+  var nextThree = arr.slice(0, 5).map(word => {
+    parseStutterWord(word, parsed => {
+      console.log(parsed);
+      return parsed.toLowerCase().replace(/\W/g, '');
+    });
+  });
+  var lastSpokenWord = speech.split(' ').splice(-1)[0].replace(/\W/g, '');
   var foundIndex = nextThree.indexOf(lastSpokenWord.toLowerCase());
+  console.log(nextThree);
   if (foundIndex > -1) {
     var newlyRead = arr.splice(0, foundIndex + 1);
     readArr.splice(-1, 0, ...newlyRead);
@@ -18,8 +24,14 @@ function highlightWords(speech, text, callback) {
   } else callback(null);
 }
 
+function parseStutterWord(word, callback) {
+  var startIndex = word.indexOf('>') + 1;
+  var endIndex = word.indexOf('<', startIndex);
+  callback(word.slice(startIndex, endIndex));
+}
+
 function populateWord(word, synonyms) {
-  return `<span data-length="${synonyms.length}" data-synonyms="${synonyms}">${word}</span>`;
+  return `<a class="stutter" data-length="${synonyms.length}" data-synonyms="${synonyms}">${word}</a>`;
 }
 
 /**
