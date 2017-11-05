@@ -37,11 +37,34 @@
       <div class="input-holder">
         <textarea class="input-body" cols="40" rows="5" placeholder="insert script here..."></textarea>
       </div>
+      <div id="carousel-synonyms" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators"></ol>
+        <div class="carousel-inner"></div>
+        <a class="left carousel-control" href="#carousel-synonyms" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-synonyms" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
       <div class="btn-holder">
         <button id="submit-btn" onclick="handleSubmit()">
           <i class="fa fa-upload" aria-hidden="true"></i>
         </button>
       </div>
+      <script>
+
+      $(document).ready(function(){
+        for(var i=0 ; i< $('stuttering').data.length ; i++) {
+          $('<div class="item"><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+          $('<div class="item"><div class="carousel-caption"></div>   </div>').text($('stuttering').data.synonyms[i]);
+          $('<li data-target="#carousel-synonyms" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
+        }
+        $('.item').first().addClass('active');
+        $('.carousel-indicators > li').first().addClass('active');
+        $('#carousel-synonyms').carousel();
+});
+</script>
     </script>
 
     <!-- Loading Screen -->

@@ -46,8 +46,27 @@
               console.log("Screen Tap Gesture");
               break;
           case "swipe":
-              console.log("Swipe Gesture");
-              break;
+            //Classify swipe as either horizontal or vertical
+            var isHorizontal = Math.abs(gesture.direction[0]) > Math.abs(gesture.direction[1]);
+            //Classify as right-left or up-down
+            if(isHorizontal){
+              if(gesture.direction[0] > 0){
+                swipeDirection = "right";
+                $("#carousel-synonyms").carousel("next");
+              } else {
+                swipeDirection = "left";
+                $("#carousel-synonyms").carousel("prev");
+              }
+            } else { //vertical
+              if(gesture.direction[1] > 0){
+                swipeDirection = "up";
+              } else {
+                swipeDirection = "down";
+              }
+            }
+          console.log(swipeDirection);
+          console.log("Swipe Gesture");
+                break;
         }
     });
   }
@@ -281,3 +300,4 @@ Vector.prototype.dotProduct = function(v2) {
  function leapToVector(leapPosition){
   return new Vector(leapPosition[0], leapPosition[1], leapPosition[2]);
  }
+ 
