@@ -202,6 +202,3 @@ checkUserLoggedIn(success => {
     }
   } else window.location = '/';
 });
-
-var socket = io.connect('http://localhost:8000');
-var stream = ss.createStream();
