@@ -73,3 +73,25 @@ function optimizeScript(text, stutList, callback) {
     }
   })
 }
+
+function updateCarousel() {
+  const wordsArr = JSON.parse(document.querySelector('.stutter').innerHTML);
+  const words = wordsArr.sort((a, b) => a.index - b.index)[0].synonyms;
+  var len = words.length;
+  var index = 0;
+    $(document).ready(function(){
+      for(var i=0 ; i< len ; i++) {
+        $('<div class="item"><div class="carousel-caption" id="carousel'+i+'"></div>   </div>').appendTo('.carousel-inner');
+        $('<li data-target="#myCarousel" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+      }
+      $('.item').first().addClass('active');
+      $('.carousel-indicators > li').first().addClass('active');
+      $(".carousel-caption").each(function(i) {
+          $(this).text(words[index]);
+          ++index;
+      });
+      index = 0;
+
+      $('#myCarousel').carousel();
+    } );
+}

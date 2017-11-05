@@ -42,8 +42,10 @@
             if(isHorizontal){
               if(gesture.direction[0] > 0){
                 swipeDirection = "right";
+                $('#myCarousel').carousel('next');
               } else {
                 swipeDirection = "left";
+                $('#myCarousel').carousel('prev');
               }
             } else { //vertical
               if(gesture.direction[1] > 0){
