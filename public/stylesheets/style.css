@@ -1,146 +1,146 @@
 style.css
 
 html {
-  height: 100%;
+  height: 100% !important;
 }
 body {
-  background: black;
-  color: #fff;
-  font-family: Tahoma, Verdana, Segoe, sans-serif;
-  height: 95%;
+  background: black !important;
+  color: #fff !important;
+  font-family: Tahoma, Verdana, Segoe, sans-serif !important;
+  height: 95% !important;
 }
 
 .header {
-  top: 0;
-  display: flex;
-  padding: 10px 30px;
+  top: 0 !important;
+  display: flex !important;
+  padding: 10px 30px !important;
 }
 
 h1 {
-  margin: 10px auto;
-  margin-top: 30px;
+  margin: 10px auto !important;
+  margin-top: 30px !important;
 }
 
 .body {
-  text-align: center;
-  height: 90%;
-  margin: auto;
+  text-align: center !important;
+  height: 90% !important;
+  margin: auto !important;
 }
 
 .input-holder {
-  margin: auto;
-  height: auto;
-  display: flex;
+  margin: auto !important;
+  height: auto !important;
+  display: flex !important;
 }
 
 .input-body {
-  border-radius: 10px;
-  display: inline-block;
-  color: black;
-  max-width:500px;
-  margin:50px auto;
-  background:white;
-  box-shadow:10px 10px 0 rgba(0,0,0,0.1);
-  padding:1rem 2rem;
-  background-size: 100% 3rem;
-  position: relative;
-  line-height:3rem;
-  width: 50%;
-  height: auto;
+  border-radius: 10px !important;
+  display: inline-block !important;
+  color: black !important;
+  max-width:500px !important;
+  margin:50px auto !important;
+  background:white !important;
+  box-shadow:10px 10px 0 rgba(0,0,0,0.1) !important;
+  padding:1rem 2rem !important;
+  background-size: 100% 3rem !important;
+  position: relative !important;
+  line-height:3rem !important;
+  width: 50% !important;
+  height: auto !important;
 }
 
 .words {
-  display: inline-block;
-  color: black;
-  max-width:500px;
-  margin:50px auto;
-  background:white;
-  border-radius:5px;
-  box-shadow:10px 10px 0 rgba(0,0,0,0.1);
-  padding:1rem 2rem 1rem 5rem;
+  display: inline-block !important;
+  color: black !important;
+  max-width:500px !important;
+  margin:50px auto !important;
+  background:white !important;
+  border-radius:5px !important;
+  box-shadow:10px 10px 0 rgba(0,0,0,0.1) !important;
+  padding:1rem 2rem 1rem 5rem !important;
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
-  background-size: 100% 3rem;
-  position: relative;
-  line-height:3rem;
-  width: 50%;
-  height: auto;
+  background-size: 100% 3rem !important;
+  position: relative !important;
+  line-height:3rem !important;
+  width: 50% !important;
+  height: auto !important;
 }
 
 .words span {
-  color: red;
+  color: red !important;
 }
 
 .words a {
-  text-decoration: none;
-  cursor: text;
-  color: black;
-  color: black;
-  background: #ff8282;
-  border-radius: 8px;
-  padding: 0 5px;
+  text-decoration: none !important;
+  cursor: text !important;
+  color: black !important;
+  color: black !important;
+  background: #ff8282 !important;
+  border-radius: 8px !important;
+  padding: 0 5px !important;
 }
 
 .words span a {
-  color: red;
+  color: red !important;
 }
 
 .words:before {
   content: '';
-  position: absolute;
-  width: 4px;
-  top: 0;
-  left: 30px;
-  bottom: 0;
-  border: 1px solid;
-  border-color: transparent #efe4e4;
+  position: absolute !important;
+  width: 4px !important;
+  top: 0 !important;
+  left: 30px !important;
+  bottom: 0 !important;
+  border: 1px solid !important;
+  border-color: transparent #efe4e4 !important;
 }
 
 .btn-holder {
-  display: flex;
-  padding: 10px;
-  width: 30%;
-  margin: auto;
+  display: flex !important;
+  padding: 10px !important;
+  width: 30% !important;
+  margin: auto !important;
 }
 
 #record-btn, #submit-btn {
-  margin: auto;
-  background: white;
-  font-size: 45px;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  cursor: pointer;
-  -webkit-transition-duration: 5s; /* Safari */
-  transition-duration: 0.4s;
+  margin: auto!important;
+  background: white!important;
+  font-size: 45px!important;
+  width: 80px!important;
+  height: 80px!important;
+  border-radius: 40px!important;
+  cursor: pointer!important;
+  -webkit-transition-duration: 5s!important; /* Safari */
+  transition-duration: 0.4s!important;
 }
 
 #record-btn:hover, #submit-btn:hover {
-  background: #afaeae;
+  background: #afaeae!important;
 }
 
 .w3-light-grey {
-  width: 100%;
-  margin: auto;
+  width: 100%!important;
+  margin: auto!important;
 }
 
 .loader-holder {
-  display: flex;
-  height: 100%;
+  display: flex!important;
+  height: 100%!important;
 }
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #1cd300; /* Blue */
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    animation: spin 2s linear infinite;
-    margin: auto;
+    border: 16px solid #f3f3f3!important; /* Light grey */
+    border-top: 16px solid #1cd300!important; /* Blue */
+    border-radius: 50%!important;
+    width: 100px!important;
+    height: 100px!important;
+    animation: spin 2s linear infinite!important;
+    margin: auto!important;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg)!important; }
+    100% { transform: rotate(360deg)!important; }
 }
 
 .dip .pip .mcp .palm .finger_label {
@@ -159,24 +159,24 @@ h1 {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .threshold .carousel-control {
-  border: 1px solid red;
-  margin: auto;
-  height: auto;
+  border: 1px solid red !important;
+  margin: auto !important;
+  height: auto !important;
 }
 
 .carousel{
-    background: #ff8000;
+    background: #ff8000 !important;
 }
 .carousel .item{
-    height: 200px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+    height: 200px !important; /* Prevent carousel from being distorted if for some reason image doesn't load */
 }
 .carousel .item img{
-    margin: 0 auto; /* Align slide image horizontally center */
+    margin: 0 auto !important; /* Align slide image horizontally center */
 }
 .carousel-caption{
-  color: white;
+  color: white !important;
 }
