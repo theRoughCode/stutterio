@@ -198,7 +198,6 @@ h3 {
   padding: 10px;
   width: 30%;
   margin: auto;
-  height: 100%;
 }
 
 .wrap {
@@ -242,21 +241,11 @@ h3 {
   flex-direction: column;
 }
 
-/*.loader {
-    border: 16px solid #fff;
-    border-top: 16px solid #1cd300;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    animation: spin 2s linear infinite;
-    margin: auto;
-}*/
-
 #loading-text {
   margin: auto;
   position: absolute;
-  left: 70px;
-  bottom: 50px;
+  left: 100px;
+  bottom: 100px;
   color: black;
 }
 

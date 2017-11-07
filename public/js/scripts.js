@@ -101,7 +101,7 @@ function stopRecording(uid) {
           recordRTC.clearRecordedData();
 
         };
-        
+
         var obj = JSON.stringify({
           uid,
           url: dataURL
