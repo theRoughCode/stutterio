@@ -179,7 +179,7 @@ function handleSubmit() {
 
 checkUserLoggedIn(success => {
   if (success) {
-    swapTemplates(INPUT_SCRIPT_TEMPLATE);
+    swapTemplates(INTRO_SCREEN_TEMPLATE);
     var successCallback = function(audioStream) {
       // RecordRTC usage goes here
       recordRTC = RecordRTC(audioStream, {

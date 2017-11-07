@@ -1,5 +1,3 @@
-style.css
-
 html {
   height: 100%;
 }
@@ -7,24 +5,104 @@ body {
   background: black;
   color: #fff;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
-  height: 95%;
+  height: 90%;
+  bottom: 50px;
+  position: absolute;
+  width: 100%;
+  margin: auto;
 }
 
 .header {
   top: 0;
   display: flex;
-  padding: 10px 30px;
+  height: 10%;
+}
+
+.header-container {
+  margin: auto;
+  display: flex;
+  width: 100%;
+}
+
+.menu {
+  margin: 10px;
+  display: flex;
+  width: 15%;
+}
+
+.header-container a {
+  color: #dbd6d6;
+  font-size: 18px;
+  margin: auto;
+  cursor: pointer;
+  -webkit-transition-duration: 5s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  border-bottom: 4px solid black;
+}
+
+.header-container a:hover {
+  color: white;
+  border-bottom-color: green;
+  font-size: 19px;
+}
+
+.header-container .selected {
+  border-bottom-color: white;
+}
+
+.link-container {
+  margin: 10px auto;
+  display: flex;
+  width: 50%;
 }
 
 h1 {
   margin: 10px auto;
-  margin-top: 30px;
+}
+
+.subtitle {
+  display: flex;
+  height: 50%;
+}
+
+h2 {
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  font-size: 40px;
+}
+
+.fb-holder {
+  display: flex;
+  height: 30%;
+}
+
+.fb-login-button {
+  margin: auto;
 }
 
 .body {
   text-align: center;
-  height: 90%;
+  height: 80%;
   margin: auto;
+}
+
+.description {
+  position: absolute;
+  left: 0;
+  display: flex;
+  width: 30%;
+  height: 90%;
+  justify-content: center;
+}
+
+.description-content {
+  margin: auto;
+  width: 80%;
+  height: 90%;
+  line-height: 250%;
+  font-size: 20px;
 }
 
 .input-holder {
@@ -128,6 +206,7 @@ h1 {
 .loader-holder {
   display: flex;
   height: 100%;
+  flex-direction: column;
 }
 
 .loader {
@@ -138,6 +217,13 @@ h1 {
     height: 100px;
     animation: spin 2s linear infinite;
     margin: auto;
+}
+
+#loading-text {
+  margin: auto;
+  position: absolute;
+  left: 70px;
+  bottom: 50px;
 }
 
 @keyframes spin {
@@ -174,19 +260,19 @@ h1 {
    height: auto;
  }
 
- .carousel{
-       background: #ff8000;
-       margin-top: 20px;
-   }
-   .carousel .item{
-       min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
-   }
-   .carousel .item img{
-       margin: 0 auto; /* Align slide image horizontally center */
-   }
-   .carousel-caption{
-     color: black;
-   }
-   .bs-example{
-     margin: 20px;
-   }
+.carousel{
+   background: #ff8000;
+   margin-top: 20px;
+}
+.carousel .item{
+   min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+   margin: 0 auto; /* Align slide image horizontally center */
+}
+.carousel-caption{
+ color: black;
+}
+.bs-example{
+ margin: 20px;
+}
