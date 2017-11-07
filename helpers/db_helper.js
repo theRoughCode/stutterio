@@ -84,7 +84,7 @@ function writeUserData(uid, name, callback) {
 function storeMp3(uid, callback){
   // var storageRef = firebase.storage().ref();
   // var mp3Ref = storageRef.child(`${uid}.mp3`);
-  var filePath = `./routes/${uid}.mp3`;
+  var filePath = `./routes/temp/${uid}.mp3`;
   fs.readFile(filePath, function(err,data){
     if (!err) {
         console.log('received data');

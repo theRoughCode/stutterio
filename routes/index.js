@@ -36,7 +36,7 @@ routes.post('/firstSyllable', function(req, res){
 
 routes.post('/uploadMp3', function(req, res){
   console.log(req.body.uid);
-  save(req.body.url, `${req.body.uid}.mp3`, (err, data) => {
+  save(req.body.url, `./temp/${req.body.uid}.mp3`, (err, data) => {
     if (err) throw err;
     db.storeMp3(req.body.uid, success => {
       if(success) res.send();
