@@ -12,13 +12,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const arr = ["hel", "world", "air", "an", "ex", "ea"];
-
 // helper for database functions
 function writeUserData(uid, name, callback) {
   firebase.database().ref('users/' + uid).set({
     name: name,
-    stutterSyllables: arr,
+    stutterSyllables: [],
     isTrained: false
   }).then(success => {
       callback(true);
@@ -31,11 +29,11 @@ function writeUserData(uid, name, callback) {
   function addStutterSyllable(uid, syllables) {
     if (!syllables && !syllables.length) syllables = arr;
 
-    firebase.database().ref('/users/'+uid+'/stutterSyllables').on("value", function(snapshot){
+    firebase.database().ref('/users/'+uid+'/stutterSyllables').once("value", function(snapshot){
       var array = Object.values(snapshot.val());
       // console.log(array);
       asyncjs.forEachOf(syllables, (value, key, callback1) => {
-        if(array.indexOf(value) == -1){
+        if(array.indexOf(value) === -1){
           array.push(value);
         }
         callback1();

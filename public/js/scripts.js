@@ -64,15 +64,15 @@ function stopRecording(uid) {
       var recordedBlob = this.getBlob();
 
       recordRTC.getDataURL(function(dataURL) {
-        // create a new request and send it via the objectUrl
+
+        // Upload MP3
         var request = new XMLHttpRequest();
         request.open("POST", './uploadMp3', true);
         request.responseType = "text";
         request.setRequestHeader("Content-type", "application/json");
         request.onload = function(e){
-          // send the blob somewhere else or handle it here
-          // use request.response
-          // console.log("Server returned: ", e.target.responseText);
+
+          // Ping Python Server and notify that file is uploaded
           var request = new XMLHttpRequest();
           request.open("POST", `http://localhost:5000/iterationComplete/${uid}`, true);
           request.responseType = "text";
@@ -80,6 +80,7 @@ function stopRecording(uid) {
           request.onload = function(e){
             console.log("Pinged Python server.");
 
+            // Update user with syllables
             var request = new XMLHttpRequest();
             request.open("POST", `/updateUser`, true);
             request.responseType = "text";
@@ -91,13 +92,16 @@ function stopRecording(uid) {
               uid,
               syllables: request.response
             }));
+
           };
           request.send(JSON.stringify({
             transcript: TRAINING_TEXT
           }));
 
           recordRTC.clearRecordedData();
+
         };
+        
         var obj = JSON.stringify({
           uid,
           url: dataURL
