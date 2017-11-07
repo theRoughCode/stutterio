@@ -1,6 +1,7 @@
 html {
   height: 100%;
 }
+
 body {
   background: #ECECEA;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -9,11 +10,19 @@ body {
   margin: auto;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.words:focus {
+    outline: none;
+}
+
 .header {
   color: #fff;
   top: 0;
   display: flex;
-  height: 100px;
+  height: auto;
   border-bottom: 1px solid rgb(169, 169, 169);
   background: #479995;
   webkit-box-shadow: 0 10px 6px -6px #999;
@@ -25,6 +34,7 @@ body {
   margin: auto;
   display: flex;
   width: 100%;
+  padding: 10px 0;
 }
 
 .menu {
@@ -45,9 +55,8 @@ body {
 }
 
 .header-container a:hover {
-  color: white;
+  color: #cbede9;
   border-bottom-color: #74ccc9;
-  font-size: 19px;
 }
 
 .header-container .selected {
@@ -91,7 +100,7 @@ h3 {
 
 .body {
   text-align: center;
-  height: auto;
+  height: 80%;
   margin: auto;
   color: black;
 }
@@ -233,15 +242,15 @@ h3 {
   flex-direction: column;
 }
 
-.loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #1cd300; /* Blue */
+/*.loader {
+    border: 16px solid #fff;
+    border-top: 16px solid #1cd300;
     border-radius: 50%;
     width: 100px;
     height: 100px;
     animation: spin 2s linear infinite;
     margin: auto;
-}
+}*/
 
 #loading-text {
   margin: auto;
@@ -250,9 +259,40 @@ h3 {
   bottom: 50px;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.loader {
+  width: 3em;
+  height: 3em;
+  animation: loaderAnim 1.25s infinite;
+  outline: 1px solid transparent;
+  margin: auto;
+}
+
+#largeBox {
+  height: 3em;
+  width: 3em;
+  background-color: #D9853B;
+  outline: 1px solid transparent;
+  position: fixed;
+}
+
+#smallBox {
+  height: 3em;
+  width: 3em;
+  background-color: #ECECEC;
+  position: fixed;
+  z-index: 1;
+  outline: 1px solid transparent;
+  animation: smallBoxAnim 1.25s alternate infinite ease-in-out;
+}
+
+@keyframes smallBoxAnim {
+  0% {transform: scale(0.2);}
+  100% {transform: scale(0.75);}
+}
+
+@keyframes loaderAnim {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(90deg);}
 }
 
 .dip .pip .mcp .palm .finger_label {

@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="input-holder">
-        <div class="words" contenteditable>
+        <div class="words">
           {{{ text }}}
         </div>
       </div>
@@ -87,7 +87,10 @@
         <div class="loading-text">
           <h3 id="loading-text"></h3>
         </div>
-        <div class="loader"></div>
+        <div class="loader">
+          <div id="largeBox"></div>
+          <div id="smallBox"></div>
+        </div>
       </div>
     </script>
 
@@ -106,9 +109,9 @@
       </div>
       <div class="stutter hidden"></div>
       <div class="btn-holder">
-        <button id="record-btn" onclick="handleRecord()">
-          <i class="fa fa-microphone" aria-hidden="true"></i>
-        </button>
+        <div class="wrap">
+          <button class="button" id="record-btn" onclick="handleRecord()">Start Recording</button>
+        </div>
       </div>
       <!-- <audio id="audio" controls autoplay></audio> -->
     </script>
