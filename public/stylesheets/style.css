@@ -13,7 +13,8 @@ body {
   color: #fff;
   top: 0;
   display: flex;
-  height: 10%;
+  height: 100px;
+  border-bottom: 1px solid rgb(169, 169, 169);
   background: #479995;
   webkit-box-shadow: 0 10px 6px -6px #999;
   -moz-box-shadow: 0 10px 6px -6px #999;
@@ -90,7 +91,7 @@ h3 {
 
 .body {
   text-align: center;
-  height: 80%;
+  height: auto;
   margin: auto;
   color: black;
 }
@@ -140,6 +141,7 @@ h3 {
   max-width:500px;
   margin:50px auto;
   background:white;
+  border: 1px solid rgb(169, 169, 169);
   border-radius:5px;
   box-shadow:10px 10px 0 rgba(0,0,0,0.1);
   padding:1rem 2rem 1rem 5rem;
@@ -187,23 +189,37 @@ h3 {
   padding: 10px;
   width: 30%;
   margin: auto;
+  height: 100%;
 }
 
-#record-btn, #submit-btn {
-  color: black;
+.wrap {
+  display: flex;
   margin: auto;
-  background: white;
-  font-size: 45px;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  cursor: pointer;
-  -webkit-transition-duration: 5s; /* Safari */
-  transition-duration: 0.4s;
 }
 
-#record-btn:hover, #submit-btn:hover {
-  background: #afaeae;
+.button {
+  width: 200px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #D9853B;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #ed9447;
+  box-shadow: 0px 15px 20px #e0bc9d;
+  color: #fff;
+  transform: translateY(-7px);
 }
 
 .w3-light-grey {
