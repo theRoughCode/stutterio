@@ -2,7 +2,7 @@ html {
   height: 100%;
 }
 body {
-  background: #CBE32D;
+  background: #ECECEA;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
   height: 90%;
   width: 100%;
@@ -14,7 +14,7 @@ body {
   top: 0;
   display: flex;
   height: 10%;
-  background: #005A31;
+  background: #479995;
   webkit-box-shadow: 0 10px 6px -6px #999;
   -moz-box-shadow: 0 10px 6px -6px #999;
   box-shadow: 0 10px 6px -6px #999;
@@ -33,24 +33,24 @@ body {
 }
 
 .header-container a {
-  color: #dbd6d6;
+  color: white;
   font-size: 18px;
   margin: auto;
   cursor: pointer;
   -webkit-transition-duration: 5s; /* Safari */
   transition-duration: 0.4s;
   text-decoration: none;
-  border-bottom: 4px solid #005A31;
+  border-bottom: 4px solid #479995;
 }
 
 .header-container a:hover {
   color: white;
-  border-bottom-color: #A8CD1B;
+  border-bottom-color: #74ccc9;
   font-size: 19px;
 }
 
 .header-container .selected {
-  border-bottom-color: #A8CD1B;
+  border-bottom-color: #74ccc9;
 }
 
 .link-container {
@@ -149,7 +149,8 @@ h3 {
   line-height:3rem;
   width: 50%;
   height: auto;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x:hidden;
 }
 
 .words span {
