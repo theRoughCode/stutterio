@@ -2,20 +2,22 @@ html {
   height: 100%;
 }
 body {
-  background: black;
-  color: #fff;
+  background: #CBE32D;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
   height: 90%;
-  bottom: 50px;
-  position: absolute;
   width: 100%;
   margin: auto;
 }
 
 .header {
+  color: #fff;
   top: 0;
   display: flex;
   height: 10%;
+  background: #005A31;
+  webkit-box-shadow: 0 10px 6px -6px #999;
+  -moz-box-shadow: 0 10px 6px -6px #999;
+  box-shadow: 0 10px 6px -6px #999;
 }
 
 .header-container {
@@ -38,17 +40,17 @@ body {
   -webkit-transition-duration: 5s; /* Safari */
   transition-duration: 0.4s;
   text-decoration: none;
-  border-bottom: 4px solid black;
+  border-bottom: 4px solid #005A31;
 }
 
 .header-container a:hover {
   color: white;
-  border-bottom-color: green;
+  border-bottom-color: #A8CD1B;
   font-size: 19px;
 }
 
 .header-container .selected {
-  border-bottom-color: white;
+  border-bottom-color: #A8CD1B;
 }
 
 .link-container {
@@ -73,6 +75,10 @@ h2 {
   font-size: 40px;
 }
 
+h3 {
+  font-weight: bold;
+}
+
 .fb-holder {
   display: flex;
   height: 30%;
@@ -86,6 +92,7 @@ h2 {
   text-align: center;
   height: 80%;
   margin: auto;
+  color: black;
 }
 
 .description {
