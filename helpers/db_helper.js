@@ -18,7 +18,7 @@ const arr = ["hel", "world", "air", "an", "ex", "ea"];
 function writeUserData(uid, name, callback) {
   firebase.database().ref('users/' + uid).set({
     name: name,
-    stutterSyllables: [],
+    stutterSyllables: arr,
     isTrained: false
   }).then(success => {
       callback(true);

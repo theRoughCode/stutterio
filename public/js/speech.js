@@ -33,13 +33,13 @@ recognition.addEventListener('result', e => {
     .map(result => result[0])
     .map(result => result.transcript).join('');
 
-    // console.log(transcript);
+    console.log(transcript);
     performHighlighting(transcript);
 
     if (transcript.includes('background') && transcript.includes('change')){
       console.log("Changing background colour...");
       const r = Math.round(Math.random() * 255);
-      const g = (transcript.includes('td')) ? 255 : Math.round(Math.random() * 255);
+      const g = 255;
       const b = Math.round(Math.random() * 255);
 
       console.log(r,g,b);
