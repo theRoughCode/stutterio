@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 import subprocess
 from AudioML import main_ml
 import re
+import operator
+import os
+import shutil
 
 
 def getNextSuccess(my_list,iter):
@@ -23,12 +26,35 @@ def getNextSuccess(my_list,iter):
 	if (my_list[i]["case"] == "success"):
 		return my_list[i]["alignedWord"]
 
-def startProcessing(filename):
+def ManualTranscriptProcessing(google_transcript , real_transcript):
+	Manual_answer = []
+	#print(real_transcript)
+	#print(google_transcript)
+	for k in google_transcript.split("\n"):
+		print(re.sub(r"[^a-zA-Z0-9]+", ' ', k))
+	for k in real_transcript.split("\n"):
+		print(re.sub(r"[^a-zA-Z0-9]+", ' ', k))
+	# google_transcript_dict = makeAdict(google_transcript)
+	# real_transcript_dict = makeAdict(real_transcript)
+	google_transcript_list1 =  [word for word in list(google_transcript.split(" "))]
+	real_transcript_list1 = [word for word in list(real_transcript.split(" "))]
+	google_transcript_list2 = [(i,word) for i,word in enumerate(list(google_transcript.split(" ")))]
+	real_transcript_list2 = [(i,word) for i,word in enumerate(list(real_transcript.split(" ")))]
+	real_transcript_lower = [x.lower() for x in real_transcript_list1]
+	google_transcript_lower = [x.lower() for x in google_transcript_list1]
+	for i in real_transcript_lower:
+		if i in google_transcript_lower:
+			google_transcript_lower.remove(i)
+	print google_transcript_lower
+	return google_transcript_lower
+
+def startProcessing(filename , real_transcript):
 	sound = AudioSegment.from_wav(filename)
 
 	# obtain path to "english.wav" in the same folder as this script
 	from os import path
 	AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "output.wav")
+	os.mkdir("new_data")
 
 	# UNCOMMENT THIS LATER.......
 	# file = open("transcript.txt","wr");
@@ -38,6 +64,9 @@ def startProcessing(filename):
 	    audio = r.record(source)  # read the entire audio file
 
 	print("read the audio...");
+	file = open("transcript.txt", 'w');
+	file.write(real_transcript)
+	file.close()
 
 	# UNCOMMENT THIS LATER.......
 	#recognize speech using Google Cloud Speech
@@ -56,11 +85,11 @@ def startProcessing(filename):
 	"""
 	try:
 	    print("Google Cloud Speech recognition results:")
-	    file = open("transcript.txt", 'w');
+	    #file = open("transcript.txt", 'w');
 	    the_result = r.recognize_google_cloud(audio, credentials_json=GOOGLE_CLOUD_SPEECH_CREDENTIALS)
 	    print(the_result)  # pretty-print the recognition result
-	    file.write(the_result)
-	    file.close()
+	    # file.write(the_result)
+	    # file.close()
 	except sr.UnknownValueError:
 	    print("Google Cloud Speech could not understand audio")
 	except sr.RequestError as e:
@@ -76,6 +105,9 @@ def startProcessing(filename):
 	datastore = json.loads(result)
 	print(result)
 
+	Manual_answer = ManualTranscriptProcessing(real_transcript,the_result)
+
+	print("Manual Answer  : ", Manual_answer )
 
 	# if filename:
 	#     # Writing JSON data
@@ -85,22 +117,27 @@ def startProcessing(filename):
 	words = datastore["words"]
 
 	my_list = []
+	not_found_in_audio = []
 
 	for i in words:
 		case = i["case"]
-		startTime = i["start"]*1000
-		endTime = i["end"]*1000
 		if case == "success":
+			startTime = i["start"]*1000
+			endTime = i["end"]*1000
 			alignedWord = i["alignedWord"]
 			my_list.append({ "alignedWord" : alignedWord, "startTime" : startTime, "endTime": endTime, "case": case})
+		elif(case == "not-found-in-transcript"):
+			startTime = i["start"]*1000
+			endTime = i["end"]*1000
+  			my_list.append({ "startTime" : startTime, "endTime": endTime, "case": case})
 		else:
-			my_list.append({ "startTime" : startTime, "endTime": endTime, "case": case})
+			not_found_in_audio.append(i["word"])
 
 	my_list[0]["startTime"] = 0
 
 	List_of_Audio_Words = []
 	for i in my_list:
-		if(i["case"] == "not-found-in-transcript" or i["case"] == "not-found-in-audio"):
+		if(i["case"] == "not-found-in-transcript"):
 			List_of_Audio_Words.append([sound[i["startTime"] : i["endTime"]],1])
 		else:
 			List_of_Audio_Words.append([sound[i["startTime"] : i["endTime"]],0])
@@ -120,7 +157,6 @@ def startProcessing(filename):
 
 	print("Successfully chopped up all the files.")
 
-
 	List_of_stutter_iter = []
 	for i in List_of_files:
 		if "Failure" in i:
@@ -131,13 +167,14 @@ def startProcessing(filename):
 				print result
 		print List_of_stutter_iter
 
-
 	List_of_stutter_words = []
+	List_of_stutter_words += not_found_in_audio
+	List_of_stutter_words += Manual_answer
 	for i in List_of_stutter_iter:
 		if (i != len(List_of_files)):
 			ans = getNextSuccess(my_list,i)
 			List_of_stutter_words.append(ans)
-
+	shutil.rmtree("./new_data")
 	return list(set(List_of_stutter_words))
 
 

@@ -45,19 +45,22 @@ def home():
 def iterationComplete(id):
     ###### Connect to firebase and fetch the mp3
     payload = {'id': id}
+    transcript_json = request.get_json()
+    real_transcript = transcript_json["transcript"]
+    payload = { 'id': id }
     try:
         r = requests.post("http://localhost:8000/getUser", data=payload)
         json_data = json.loads(r.text)
         my_mp3 = json_data["mp3"]
     except:
         print("Error : There was a problem with the User")
-    # print(my_mp3)
     mymp3_64_decode = base64.decodestring(my_mp3) 
+    print(mymp3_64_decode)
     image_result = open('output.mp3', 'wb') # create a writable image and write the decoding result
     image_result.write(mymp3_64_decode)
     subprocess.call(['ffmpeg', '-i', './output.mp3', './output.wav', '-y'])
     ## save mp3 in the same folder and call the mp3 "output.wav"
-    my_ans = startProcessing("output.wav")
+    my_ans = startProcessing("output.wav" , real_transcript)
     os.remove("./output.wav")
     os.remove("./output.mp3")
     print(my_ans)
