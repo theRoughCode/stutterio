@@ -24,7 +24,7 @@ button:focus,
   display: flex;
   height: auto;
   border-bottom: 1px solid rgb(169, 169, 169);
-  background: #479995;
+  background: #3bb582;
   webkit-box-shadow: 0 10px 6px -6px #999;
   -moz-box-shadow: 0 10px 6px -6px #999;
   box-shadow: 0 10px 6px -6px #999;
@@ -51,7 +51,7 @@ button:focus,
   -webkit-transition-duration: 5s; /* Safari */
   transition-duration: 0.4s;
   text-decoration: none;
-  border-bottom: 4px solid #479995;
+  border-bottom: 4px solid #3bb582;
 }
 
 .header-container a:hover {
@@ -214,7 +214,7 @@ h3 {
   letter-spacing: 2.5px;
   font-weight: 500;
   color: #fff;
-  background-color: #D9853B;
+  background-color: #ef9d53;
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -224,7 +224,7 @@ h3 {
   }
 
 .button:hover {
-  background-color: #ed9447;
+  background-color: #efb17a;
   box-shadow: 0px 15px 20px #e0bc9d;
   color: #fff;
   transform: translateY(-7px);
