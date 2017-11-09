@@ -65,7 +65,7 @@ def startProcessing(filename , real_transcript):
 	# obtain path to "english.wav" in the same folder as this script
 	from os import path
 	AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "output.wav")
-
+	os.mkdir("new_data")
 
 	# UNCOMMENT THIS LATER.......
 	# file = open("transcript.txt","wr");
@@ -160,6 +160,7 @@ def startProcessing(filename , real_transcript):
 		fail = "Failure"
 		exten = ".wav"
 		if(chunk[1] == 1):
+			print("Found a Failure...")
 			filename = filename + fail
 		Final_name = filename + exten
 		out_file = Final_name.format(i)
@@ -178,7 +179,7 @@ def startProcessing(filename , real_transcript):
 			if not(result == "ERROR"):
 				print result[2][int(result[0])]
 				print result
-		print List_of_stutter_iter
+			print List_of_stutter_iter
 
 
 	List_of_stutter_words = []
