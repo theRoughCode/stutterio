@@ -60,8 +60,8 @@ def iterationComplete(id):
     subprocess.call(['ffmpeg', '-i', './output.mp3', './output.wav', '-y'])
     ## save mp3 in the same folder and call the mp3 "output.wav"
     my_ans = startProcessing("output.wav" , real_transcript)
-    os.remove("./output.wav")
-    os.remove("./output.mp3")
+    # os.remove("./output.wav")
+    # os.remove("./output.mp3")
     print(my_ans)
     return json.dumps(my_ans)
 
