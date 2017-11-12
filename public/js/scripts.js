@@ -59,7 +59,7 @@ function startRecording() {
  * Stop recording and get mp3 file
  */
 function stopRecording(uid) {
-  const TRAINING_TEXT = "I have four cats and five dogs.  They were eager to go to the beachfront. I earnestly saw eight eager eagles.  I ate a chocolate waffle";
+  const TRAINING_TEXT ="I have four cats and five dogs. I ate a chocolate waffle";
   recordRTC.stopRecording(function(audioURL) {
       var recordedBlob = this.getBlob();
 
@@ -128,6 +128,7 @@ function handleRecord() {
       if(user !== null && user.length) {
         user = JSON.parse(user);
         console.log(user.id);
+        console.log("Calling stopRecording...")
         stopRecording(user.id);
       }
     });
