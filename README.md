@@ -13,5 +13,5 @@ The database is stored on Google's Firebase.<br />
 The machine learning algorithm is written in Python and utilizes the scikit-learn library.
 
 # Links
-[Website] (https://stutterio-9a716.appspot.com/)
+[Website](https://stutterio-9a716.appspot.com/)<br />
 [Devpost](https://devpost.com/software/stutterio)
