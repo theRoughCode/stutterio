@@ -61,4 +61,4 @@ six==1.11.0
 SpeechRecognition==3.7.1
 subprocess32==3.2.7
 urllib3==1.22
-Werkzeug==0.12.2
+Werkzeug==0.15.3
