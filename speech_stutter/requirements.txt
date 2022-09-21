@@ -46,7 +46,7 @@ pydub==0.20.0
 pyparsing==2.2.0
 Pyrebase==3.0.27
 python-dateutil==2.6.1
-python-jwt==2.0.1
+python-jwt==3.3.4
 python-magic==0.4.13
 pytz==2017.3
 requests==2.11.1
