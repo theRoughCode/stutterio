@@ -38,7 +38,7 @@ numpy==1.13.3
 oauth2client==3.0.0
 pathlib==1.0.1
 ply==3.8
-protobuf==3.4.0
+protobuf==3.18.3
 pyasn1==0.3.7
 pyasn1-modules==0.1.5
 pycryptodome==3.4.3
